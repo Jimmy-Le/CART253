@@ -1,4 +1,4 @@
-# CART 253 Projects~
+# Fall 2026
 ---
 
 1. [This](/README.md)
