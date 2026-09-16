@@ -1,22 +1,33 @@
 /**
  * IDK what the title is
- * Piploop
+ * Jimmy
  * 
- * HOW EMBARRASSING! I HAVE NO DESCRIPTION OF MY PROJECT!
- * PLEASE GIVE ME A BETTER GRADE FOR MY WORK IF IT'S GRADED!
+ * This project is for an in-class challenge with a focus on 
+ * drawing shapes to make pictures.
  */
 
 "use strict";
 
 /**
- * OH LOOK I DIDN'T DESCRIBE SETUP!!
+ * This function sets up the canvas and background color
 */
 function setup() {
     createCanvas(700, 700);
     background(75,100,250);
 
-    // Flying creature
+}
 
+
+/**
+ * This function will draw
+ * 1. A small yellow land
+ * 2. A set of Blue tents on the land
+ * 3. 2 Hills surrounding the camp
+ * 4. A moon and a sun
+ * 5. Birds
+ * 6. Floating people
+*/
+function draw() {
 
     // Background Tent
     fill(200,240,255);
@@ -100,17 +111,6 @@ function setup() {
     line(630, 100, 630, 120);
     rect(610, 80, 20, 30);
     rect(615, 70, 10, 20);
-
-}
-
-
-/**
- * OOPS I DIDN'T DESCRIBE WHAT MY DRAW DOES!
-*/
-function draw() {
-
-    
-
 
 
 }
