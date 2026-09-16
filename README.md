@@ -9,6 +9,11 @@ This website is used to display the projects made in the CART 253 class
 1. [This Webpage](./README.md)
 2. [Journal](./journal.md)
 
-## Prototyping Stuff
+
+## Challenges
 
 1. [Instruction Challenge](./instruction-challenge/index.html)
+
+## Assignments
+
+1. Bleh
