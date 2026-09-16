@@ -11,7 +11,7 @@ Jimmy Le
 ## Screenshot(s)
 
 
-> ![Image of the site](./Image/Instruction_Challenge_SS.png)
+> ![Image of the site](./assets/images/Instruction_Challenge_SS.png)
 
 ## Attribution
 
