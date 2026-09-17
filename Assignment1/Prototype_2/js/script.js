@@ -1,25 +1,29 @@
 /**
- * IDK what the title is
+ * Circle Illusion
  * Jimmy
  * 
- * This project is for an in-class challenge with a focus on 
- * drawing shapes to make pictures.
  */
 
 "use strict";
 
 
+// Border of the canvas
 let maxX;
 let maxY;
 
+// Space between each dot
 let interval;
 
+// Colors
 let red;
 let blue;
-let white;
 
 /**
- * This function sets up the canvas and background color
+ * This function sets up the canvas
+ * background color
+ * stroke weight
+ * define colors
+ * and variables
 */
 function setup() {
     createCanvas(500, 500);
@@ -27,7 +31,6 @@ function setup() {
     strokeWeight(5);
 
     red = color(255,0,0);
-    white = color(255,255,255);
     blue = color(0,0,255);
 
     interval = 10;
@@ -38,13 +41,18 @@ function setup() {
 
 
 /**
-
+ * This function will generate the different type of dots
 */
 function draw() {
     generateDots(blue, interval + 1);
     generateDots(red, interval);
 }
 
+/**
+ * This function will generate a series of dots based on a given color and interval.
+ * @param {color} color 
+ * @param {int} offset 
+ */
 function generateDots(color, offset)
 {
     stroke(color);
