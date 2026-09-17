@@ -1,17 +1,16 @@
-# Instruction-Challenge
+# Prototype 2
 
 Jimmy Le
 
-[View this project online](https://jimmy-le.github.io/CART253/instruction-challenge/index.html)
+[View this project online](https://jimmy-le.github.io/CART253/Assignment1/Prototype_2/index.html)
 
 ## Description
 
->This is a picture of a small land with a a group of tents, between 2 hills, in a world with a moon and sun, birds and floating people.
-
+>This is a picture of a bunch of dots, making non-existant white circles as an illusion.
 ## Screenshot(s)
 
 
-> ![Image of the site](./assets/images/Instruction_Challenge_SS.png)
+> ![Image of the site](./assets/images/Circles.SS.png)
 
 ## Attribution
 
