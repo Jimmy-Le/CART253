@@ -53,27 +53,20 @@ function generateHead()
     ellipse(250,200,160,70);
     pop();
     // Eyes
-    fill(50,80,200);
+    fill(0,0,0);
     ellipse(195,150, 20, 40);
     ellipse(305,150, 20, 40);
 
-    // Pupils
-    fill(0,0,0);
-    ellipse(195,150,10,20);
-    ellipse(305,150,10,20);
 
     // Eye Shine
-
+    stroke(255,255,255);
     fill(255,255,255);
-    ellipse(198,140,10,10);
-    ellipse(308,140,10,10);
+    ellipse(200,140,15,15);
+    ellipse(310,140,15,15);
 
 
-
-
-    
     // Nose
-    
+    stroke(0,0,0)
     fill(150,200,255);
     beginShape();
 
@@ -89,7 +82,7 @@ function generateHead()
     // Beak
 
     fill(255,240,0);
-    ellipse(250,190,60,40);
+    ellipse(250,190,40,35);
 
-    line(220,190, 280,190);
+    line(230,190, 270,190);
 }
