@@ -40,6 +40,9 @@ function draw() {
     }
 }
 
+/**
+ * This function draws a rice shaped shape with random colors and position.
+ */
 function display()
 {
     stroke(color(random(0,255),random(0,255),random(0,255)))

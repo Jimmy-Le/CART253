@@ -1,4 +1,4 @@
-# Instruction-Challenge
+# Prototype 3
 
 Jimmy Le
 
@@ -6,12 +6,12 @@ Jimmy Le
 
 ## Description
 
->This is a picture of a small land with a a group of tents, between 2 hills, in a world with a moon and sun, birds and floating people.
+>This is an animation(?) of a bunch of colored rice appearing and disapearing.
 
 ## Screenshot(s)
 
 
-> ![Image of the site](./assets/images/Instruction_Challenge_SS.png)
+> ![Image of the site](./assets/images/RandomRice_SS.png)
 
 ## Attribution
 
