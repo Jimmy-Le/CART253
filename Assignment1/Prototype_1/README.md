@@ -1,17 +1,17 @@
-# Instruction-Challenge
+# Prototype 1
 
 Jimmy Le
 
-[View this project online](https://jimmy-le.github.io/CART253/instruction-challenge/index.html)
+[View this project online](https://jimmy-le.github.io/CART253/Assignment1/Prototype_1/index.html)
 
 ## Description
 
->This is a picture of a small land with a a group of tents, between 2 hills, in a world with a moon and sun, birds and floating people.
+>This is a picture of a piplup
 
 ## Screenshot(s)
 
 
-> ![Image of the site](./assets/images/Instruction_Challenge_SS.png)
+> ![Image of the site](./assets/images/Piplup_SS.png)
 
 ## Attribution
 
@@ -19,6 +19,7 @@ Jimmy Le
 > - This project uses [p5.js](https://p5js.org).
 > - It uses some starter code from Sabine and Pippin.
 > - The barking sound effect is "single dog bark 1" by crazymonke9 from freesound.org: https://freesound.org/people/crazymonke9/sounds/418107/
+> - Piplup from pokemon (plz don't sue me Nintendo)
 
 ## License
 

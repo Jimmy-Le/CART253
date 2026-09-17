@@ -16,4 +16,4 @@ This website is used to display the projects made in the CART 253 class
 
 ## Assignments
 
-1. Bleh
+1. [Assignment 1: Prototype 1](./Assignment1/Prototype_1/index.html)
