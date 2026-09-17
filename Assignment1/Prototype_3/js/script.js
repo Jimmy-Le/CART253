@@ -1,27 +1,48 @@
 /**
- * IDK what the title is
+ * RANDOM RICE
  * Jimmy
  * 
- * This project is for an in-class challenge with a focus on 
- * drawing shapes to make pictures.
  */
 
 "use strict";
 
+let wipeTime;
+let timer;
+
+
 /**
- * This function sets up the canvas and background color
+ * This function sets up the canvas, background color, and the timer for the animations.
 */
 function setup() {
-    createCanvas(700, 700);
-    background(75,100,250);
+    createCanvas(500, 500);
+    background(0);
+    frameRate(5);
 
+    wipeTime = 5000;
+    timer = 0;
 }
 
-
 /**
+ * This function will call the display function until it reaches a certain time
+ * where it will erase the canvas and start again
 */
 function draw() {
 
+    if(timer <= wipeTime)
+    {
+        display();
+        timer = timer + deltaTime;
+    }
+    else
+    {
+        background(0);
+        timer = 0;
+    }
+}
 
-
+function display()
+{
+    stroke(color(random(0,255),random(0,255),random(0,255)))
+    fill(color(random(0,255),random(0,255),random(0,255)))
+    ellipse(random(70, 430), random(10,490), 70, 10);
 }
