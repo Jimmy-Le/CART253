@@ -23,28 +23,50 @@ function setup() {
 function draw() {
    
     // Head
+    
     fill(50,80,180);
+    stroke(0,0,0);
     ellipse(250, 150, 200, 190);           
+    push();
 
     // Eye Circles
     fill(255,255,255);
-    beginShape();
+    stroke(255,255,255);
+    ellipse(195,160,80,120);
+    ellipse(305,160,80,120);
+    ellipse(250,200,150,65);
+    pop();
+    // Eyes
+    fill(70,80,200);
+    ellipse(195,150, 20, 40);
+    ellipse(305,150, 20, 40);
+
+    // Pupils
+    fill(0,0,0);
+    ellipse(195,150,10,20);
+    ellipse(305,150,10,20);
+
+    // Eye Shine
+
+    fill(255,255,255);
+    ellipse(198,140,10,10);
+    ellipse(308,140,10,10);
 
 
-    endShape();
-    
+
 
     
     // Nose
+    
     fill(80,135,255);
     beginShape();
 
-    vertex(250, 150);
+    vertex(250, 150);       // Middle
     vertex(260, 160);
-    vertex(270, 150);
-    vertex(260, 180);
-    vertex(240, 180);
-    vertex(230, 150);
+    vertex(265, 150);       // Top Left
+    vertex(265, 180);       // Bottom Left
+    vertex(235, 180);       // Bottom Right
+    vertex(235, 150);       // Top Right
     vertex(240, 160);
     endShape(CLOSE);
     
