@@ -20,7 +20,11 @@ let mrFurious = {
     r: 255,
     g: 225,
     b: 225
-  }
+  },
+
+  baseX: 200,
+  baseY: 200,
+  variation: 10
 };
 
 
@@ -41,6 +45,23 @@ let skyColor = {
     }
 }
 
+// Bird object
+let bird = 
+{
+    x:200,
+    y:150,
+    size: 20,
+    speed: 10,
+    direction: 1,
+    fill:
+    {
+        r:0,
+        g:20,
+        b:200
+    }
+
+}
+
 /**
  * Create the canvas
  */
@@ -58,12 +79,22 @@ function draw() {
   push();
   noStroke();
   fill(mrFurious.fill.r, mrFurious.fill.g, mrFurious.fill.b);
-  ellipse(mrFurious.x, mrFurious.y, mrFurious.size);
+  ellipse(mrFurious.x, mrFurious.y, mrFurious.size);                    
+  pop();
+
+  // Draw the bird as a colored circle
+  push()
+  fill(bird.fill.r, bird.fill.g, bird.fill.b);
+  ellipse(bird.x, bird.y, bird.size);
+  pop()
+
+
 
   // Functions that change values
-  makeSkyDark();
-  makeFuriousRed();                           
-  pop();
+  makeSkyDark();          // This makes the sky dark and back to light
+  makeFuriousRed();       // This makes mr furious red and back to normal
+  moveBird();             // This makes the bird move and change directions
+  moveFurious();
 }
 
 
@@ -118,4 +149,30 @@ function makeSkyDark()
     }
 
 
+}
+
+/***
+ * This function changes the position of the bird, and handles it's direction once it reaches the edge
+ */
+function moveBird()
+{
+    // Increment the bird's position based on it's direction and speed
+    bird.x += bird.direction * bird.speed;
+
+    // If the bird reaches the border, flip its direction
+    if(bird.x <= 0 || bird.x >= width)
+    {
+        bird.direction = bird.direction * -1;
+    }
+
+}
+
+
+/***
+ * This function will randomly change the position of Mr Furious by a variation.
+ */
+function moveFurious()
+{
+  mrFurious.x = random(mrFurious.baseX - mrFurious.variation, mrFurious.baseX + mrFurious.variation);
+  mrFurious.y = random(mrFurious.baseY - mrFurious.variation, mrFurious.baseY + mrFurious.variation);
 }
