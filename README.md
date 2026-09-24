@@ -13,6 +13,7 @@ This website is used to display the projects made in the CART 253 class
 ## Challenges
 
 1. [Instruction Challenge](./instruction-challenge/index.html)
+2. [Variables Challenge](./variables-challenge/index.html)
 
 ## Assignments
 
