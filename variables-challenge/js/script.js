@@ -24,7 +24,7 @@ let mrFurious = {
 
   baseX: 200,
   baseY: 200,
-  variation: 10
+  variation: 0
 };
 
 
@@ -62,6 +62,10 @@ let bird =
 
 }
 
+let timer = 0;                              // Current Time (timer)
+let maxTime = 10;                           // Maximum Time/Value that the variations will cap out at
+let tick = 0.0005;                          // increments to the time, this is multiplied by deltaTime.
+
 /**
  * Create the canvas
  */
@@ -94,7 +98,10 @@ function draw() {
   makeSkyDark();          // This makes the sky dark and back to light
   makeFuriousRed();       // This makes mr furious red and back to normal
   moveBird();             // This makes the bird move and change directions
-  moveFurious();
+  moveFurious();          // This makes mr furious shake
+
+  // Update the timer 
+  timer += tick * deltaTime;
 }
 
 
@@ -164,15 +171,17 @@ function moveBird()
     {
         bird.direction = bird.direction * -1;
     }
-
 }
-
 
 /***
  * This function will randomly change the position of Mr Furious by a variation.
  */
 function moveFurious()
 {
+  // Randomly positions Mr Furious within a certain range, influced by a variation
   mrFurious.x = random(mrFurious.baseX - mrFurious.variation, mrFurious.baseX + mrFurious.variation);
   mrFurious.y = random(mrFurious.baseY - mrFurious.variation, mrFurious.baseY + mrFurious.variation);
+
+  // Update the variation based on time, Capped out at maxTime
+  mrFurious.variation = min(timer, maxTime);
 }
