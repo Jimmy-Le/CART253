@@ -18,11 +18,11 @@ This website is used to display the projects made in the CART 253 class
 ## Assignments
 
 **Assignment 1** 
-   - [Assignment 1: Prototype 1](./Assignment1/Prototype_1/index.html)
-   - [Assignment 1: Prototype 2](./Assignment1/Prototype_2/index.html)
-   - [Assignment 1: Prototype 3](./Assignment1/Prototype_3/index.html)
+   - [Pip Plup](./Assignment1/Prototype_1/index.html)
+   - [Circle](./Assignment1/Prototype_2/index.html)
+   - [Random Rice](./Assignment1/Prototype_3/index.html)
 
 **Assignment 2** 
-   - [Assignment 2: Prototype 1](./Assignment2/Prototype1/index.html)
-   - [Assignment 2: Prototype 2](./Assignment2/Prototype2/index.html)
-   - [Assignment 2: Prototype 3](./Assignment2/Prototype3/index.html)
+   - [Bouncy](./Assignment2/Prototype1/index.html)
+   - [Auto Pong](./Assignment2/Prototype2/index.html)
+   - [I see you](./Assignment2/Prototype3/index.html)
