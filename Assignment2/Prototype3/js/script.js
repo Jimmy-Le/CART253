@@ -110,7 +110,7 @@ let shineL =
   y: maxY/2,
   directionX: 0,
   directionY: 1,
-  height: 10,
+  height: 5,
   width: 10,
   offset: 5,
   speed: 2,
@@ -128,7 +128,7 @@ let shineR =
   y: maxY/2,
   directionX: 0,
   directionY: 1,
-  height: 10,
+  height: 5,
   width: 10,
   offset: 5,
   speed: 2,
@@ -140,6 +140,17 @@ let shineR =
   }
 }
 
+let head = 
+{
+  x1: maxX/2 - spacing*1.5,
+  y1: maxY/2 - spacing*1.5,
+  x2: 0,
+  y2: 0,
+  x3: maxX,
+  y3: 0,
+  x4: maxX/2 + spacing*1.5,
+  y4: maxY/2 - spacing*1.5
+}
 
 
 /**
@@ -154,6 +165,13 @@ function setup() {
  */
 function draw() {
   background(skyColor.fill.r, skyColor.fill.g, skyColor.fill.b);
+
+  push()
+  noStroke()
+  fill(255,255,0)
+  quad(head.x1,head.y1,head.x2,head.y2,head.x3,head.y3,head.x4,head.y4);
+
+  pop()
 
   push();
   fill(255,255,0);
@@ -171,8 +189,8 @@ function draw() {
   push();
   fill(255,255,255);
   noStroke();
-  ellipse(shineL.x + shineL.offset, shineL.y, shineL.width, shineL.height);
-  ellipse(shineR.x + shineR.offset, shineR.y, shineR.width, shineR.height);  
+  ellipse(pupilL.x + shineL.offset, pupilL.y, shineL.width, shineL.height);
+  ellipse(pupilR.x + shineR.offset, pupilR.y, shineR.width, shineR.height);  
   pop();
 
 
@@ -184,14 +202,14 @@ function movePupil()
 {
 
   pupilL.x += pupilL.directionX * constantSpeed;
-  pupilL.x = constrain(pupilL.x, eyeL.x - eyeL.width/2, eyeL.x + eyeL.width/2)
+  pupilL.x = constrain(pupilL.x, eyeL.x - eyeL.width/2 + pupilL.width/2, eyeL.x + eyeL.width/2 - pupilL.width/2)
 
   pupilL.y += pupilL.directionY * constantSpeed;
-  pupilL.y = constrain(pupilL.y, eyeL.y - eyeL.height/2, eyeL.y + eyeL.height/2)
-
+  pupilL.y = constrain(pupilL.y, eyeL.y - eyeL.height/2 , eyeL.y + eyeL.height/2 )
 
   pupilR.x += pupilR.directionX * constantSpeed;
-  pupilR.x = constrain(pupilR.x, eyeR.x - eyeR.width/2, eyeR.x + eyeR.width/2)
+  pupilR.x = constrain(pupilR.x, eyeR.x - eyeR.width/2 + pupilR.width/2, eyeR.x + eyeR.width/2 - pupilR.width/2)
+
   pupilR.y += pupilR.directionY * constantSpeed;
   pupilR.y = constrain(pupilR.y, eyeR.y - eyeR.height/2, eyeR.y + eyeR.height/2)
 
@@ -203,3 +221,5 @@ function movePupil()
   pupilR.directionY = pupilR.y < mouseY ? 1 : -1;
 
 }
+
+
