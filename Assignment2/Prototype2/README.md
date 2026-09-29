@@ -2,20 +2,19 @@
 
 Jimmy Le
 
-[View this project online](https://jimmy-le.github.io/CART253/variables-challenge/index.html)
+[View this project online](https://jimmy-le.github.io/CART253/Assignment2/Prototype2/index.html)
 
 ## Description
 
-This challenge practices the use of variables, through making mr furious more furious
+This prototype shows pong being played by itself
+
+![auto pong](./assets/images/AutoPong.png)
 
 ## Attribution
 
 This bit should attribute any code, assets or other elements used taken from other sources. For example:
 
 > - This project uses [p5.js](https://p5js.org).
-> - The clown image is a capture of the clown from the Apple emoji character set.
-> - The barking sound effect is "single dog bark 1" by crazymonke9 from freesound.org: https://freesound.org/people/crazymonke9/sounds/418107/
-> - Start code by Pippin Barr
 
 ## License
 
