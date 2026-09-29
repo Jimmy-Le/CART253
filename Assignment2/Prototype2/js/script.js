@@ -58,8 +58,8 @@ let ball  =
   width: 30,
   offset: 15,
   directionX: -1,
-  directionY: 1,
-  speed: 1,
+  directionY: -1,
+  speed: 2,
   color:
   {
     r: 0,
@@ -82,7 +82,7 @@ function setup() {
  * Draw (and update) Mr. Furious
  */
 function draw() {
-  background(255,255,255)
+  background(0,0,0)
   push()
   fill(255,0,0);
   rect(leftPaddle.x, leftPaddle.y, leftPaddle.width, leftPaddle.height)
@@ -92,6 +92,7 @@ function draw() {
   pop()
 
   moveBall();
+  movePaddle();
 
 }
 
@@ -101,31 +102,28 @@ function moveBall()
   ball.x += ball.directionX * ball.speed;
   ball.y += ball.directionY * ball.speed;
 
-  // Move Paddles
-  leftPaddle.y += ball.directionY * leftPaddle.speed;
-  rightPaddle.y += ball.directionY * rightPaddle.speed;
-
-  leftPaddle.y = constrain(leftPaddle.y, 0, maxY + leftPaddle.height);
-  rightPaddle.y = constrain(rightPaddle.y, 0, maxY + rightPaddle.height);
-  
 
   // If the ball hits left
-  if(ball.x - ball.offset == leftPaddle.x + leftPaddle.offset && ball.y + ball.height >= leftPaddle.y && ball.y <= leftPaddle.y +  leftPaddle.height)
+  let leftXCondition = ball.x - ball.offset <= leftPaddle.x + leftPaddle.offset;
+  let leftYCondition = ball.y + ball.height >= leftPaddle.y && ball.y <= leftPaddle.y +  leftPaddle.height
+  let rightXCondition = ball.x + ball.offset >= rightPaddle.x - rightPaddle.offset
+
+  if(leftXCondition && leftYCondition)
   {
       ball.directionX = ball.directionX * -1;
-      ball.directionY = ball.directionY * -1;
+      ball.directionY = ball.directionY * Math.ceil(random(0,2)) == 1 ? 1 : -1;
   }
 
-    if(ball.x + ball.offset == rightPaddle.x - rightPaddle.offset && ball.y + ball.height >= rightPaddle.y && ball.y <= rightPaddle.y +  rightPaddle.height)
+    if(rightXCondition && ball.y + ball.height >= rightPaddle.y && ball.y <= rightPaddle.y +  rightPaddle.height)
   {
       ball.directionX = ball.directionX * -1;
-      ball.directionY = ball.directionY * -1;
+      ball.directionY = ball.directionY * Math.ceil(random(0,2)) == 1 ? 1 : -1;
   }
 
 
-  if(ball.y <= 0 - ball.offset || ball.y >= maxY + ball.offset)
+  if(ball.y <= 0  || ball.y + ball.height >= maxY)
   {
-    ball.directionX = ball.directionX * -1;
+    // ball.directionX = ball.directionX * -1;
     ball.directionY = ball.directionY * -1;
   }
 
@@ -139,10 +137,25 @@ function moveBall()
 
 }
 
+function movePaddle()
+{
+  // Move Paddles
+  leftPaddle.y += leftPaddle.directionY * leftPaddle.speed;
+  rightPaddle.y += rightPaddle.directionY * rightPaddle.speed;
+
+
+  leftPaddle.directionY = leftPaddle.y + leftPaddle.height/2 < ball.y + ball.offset ? 1 : -1;
+  rightPaddle.directionY = rightPaddle.y + rightPaddle.height/2  < ball.y  + ball.offset? 1 : -1;
+
+
+  leftPaddle.y = constrain(leftPaddle.y, 0, maxY - leftPaddle.height);
+  rightPaddle.y = constrain(rightPaddle.y, 0, maxY - rightPaddle.height);
+}
+
 function resetBall()
 {
   ball.x = maxX/2;
   ball.y = maxY/2;
-  background(255,255,255);
+  background(0,0,0);
 }
 
