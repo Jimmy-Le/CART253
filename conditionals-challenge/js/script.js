@@ -1,17 +1,27 @@
 /**
  * Circle Master
+ * Jimmy Le
  * Pippin Barr
  *
  * This will be a program in which the user can push a circle
  * on the canvas using their own circle.
  */
+
+// Speed attribute
 let speed = 1
+// Direction x and y of the puck
 let xDirection = 0;
 let yDirection = 0;
+
+// Acceleration of the puck
 let acceleration = 0;
 let maxAcceleration = 1.5;
+
+// Decceleration rate of the puck
 let decceleration = 0.05;
 
+
+// puck properties
 const puck = {
   x: 200,
   y: 200,
@@ -19,6 +29,7 @@ const puck = {
   fill: "#070101"
 };
 
+// User properties
 const user = {
   x: undefined, // will be mouseX
   y: undefined, // will be mouseY
@@ -26,6 +37,7 @@ const user = {
   fill: "#3f3bad"
 };
 
+// Target properties
 const target = {
   x: -50, // will be mouseX
   y: 200, // will be mouseY
@@ -90,7 +102,7 @@ function drawPuck() {
 }
 
 /**
- * Displays the puck circle
+ * Displays the target circle
  */
 function drawTarget() {
   push();
@@ -101,7 +113,11 @@ function drawTarget() {
   pop();
 }
 
-
+/***
+ * This function will move the puck if the user intersects with it
+ * it will move in the opposite direction of the user
+ * and decelerate over time
+ */
 function movePuck()
 {
 
@@ -112,7 +128,8 @@ function movePuck()
   // because if it is, they are overlapping by the amazing
   // power of geometry!
   const overlap = (d < user.size/2 + puck.size/2);
-  // Set fill based on whether they overlap
+
+  // Reset Acceleration and set the direction based on whether they overlap
   if (overlap) {
     acceleration = maxAcceleration;
 
@@ -140,17 +157,21 @@ function movePuck()
     {
       yDirection = 0;
     }
-
-
   }
 
+  // Update the x and y direction
   puck.x += xDirection * speed * acceleration;
   puck.y += yDirection * speed * acceleration;
 
+  // Decelerate over time and constrain it so it doesnt go in the negatives
   acceleration -= decceleration;
   acceleration = constrain(acceleration, 0, maxAcceleration);
 }
 
+/***
+ * This function will check if the puck overlaps with the target 
+ * and change its color whether it is touching or not
+ */
 function checkTarget()
 {
   // Calculate distance between circles' centres
@@ -160,6 +181,7 @@ function checkTarget()
   // power of geometry!
   const overlap = (d < target.size/2 + puck.size/2);
 
+  // If the it overlaps, fill it with the goal color, otherwise, set it back to the base color
   if(overlap)
   {
     target.fill = target.goalFill;
