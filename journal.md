@@ -1,6 +1,36 @@
 # Reflective Journal
 ---
-## (NEW) 29 September 2026
+## (NEW) 05 October 2026
+
+This is gonna be a reoccuring topic, but I also don't really know what to do for the "Conditional" prototyping, so I just kinda did random projects that has an if/else statement in it.
+
+The first prototype is a Yoyo. I originally wanted to do a swinging stopwatch, but trying to apply a curve formula did not go well. Instead it was dragging on the floor for a bit and went up. I thought that was cool so I changed it a bit to become a Yoyo.
+
+![Yo YoYo](./Assignment3/Prototype1/assets/images/yoyo.png)
+
+
+I copied over assignment 2 as a base template, so the Pong showed up and I was wondering if there were ways for me to improve it (instead of starting a project from scratch xd)
+
+In this prototype, I fixed up some pesky bugs in the original version:
+- Needed to use an If Else instead of 2 If blocks (????) to make the ball hit the left/right sides and reset
+- Separated the left and right paddle code to only push the ball in the opposite direction (prevents a lot of self pingponging )
+
+I also made the paddle follow the mouse and have the ball accelerate upon hitting a paddle. This makes it fun to swing around.
+
+![Power Pong](./Assignment3/Prototype2/assets/images/PowerPong.png)
+
+
+For prototype 3, I wanted to make it so you spawn a ball, and it falls and bounces off the floor at half the height each time. But when I first clicked on the canvas, a line of balls showed up, and I thought it would be fun to make a canvas instead.
+
+(I will probably keep that first idea for next week)
+
+To make the canvas more user-friendly, i added in a reset button and a erase/draw toggle button
+
+![Canvas](./Assignment3/Prototype3/assets/images/Canvas.png)
+
+
+---
+## 29 September 2026
 
 I don't really know how to *do* the variable challenge, since I kind of live and breath variables as a programmer.
 So I just made projects that uses variables for movement, updates and storing data.
