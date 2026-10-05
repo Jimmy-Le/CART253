@@ -27,3 +27,8 @@ This website is used to display the projects made in the CART 253 class
    - [Bouncy](./Assignment2/Prototype1/index.html)
    - [Auto Pong](./Assignment2/Prototype2/index.html)
    - [I see you](./Assignment2/Prototype3/index.html)
+
+**Assignment 3** 
+- [Yo Yoyo](./Assignment3/Prototype1/index.html)
+- [Nuh uh](./Assignment3/Prototype2/index.html)
+- [TBD](./Assignment3/Prototype3/index.html)
