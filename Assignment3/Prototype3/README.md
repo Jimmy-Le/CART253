@@ -1,14 +1,14 @@
-# Furious Furious
+# Canvas
 
 Jimmy Le
 
-[View this project online](https://jimmy-le.github.io/CART253/Assignment2/Prototype3/index.html)
+[View this project online](https://jimmy-le.github.io/CART253/Assignment3/Prototype3/index.html)
 
 ## Description
 
-This prototype has a cat-like figure that stares and follows your mouse cursor
+This prototype offers a canvas for viewers to draw in. They can only draw in black and white.
 
-![I See You](./assets/images/ISeeYou.png)
+![Canvas](./assets/images/Canvas.png)
 
 ## Attribution
 > - This project uses [p5.js](https://p5js.org).
