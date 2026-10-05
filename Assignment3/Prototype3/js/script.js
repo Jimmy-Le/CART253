@@ -25,159 +25,97 @@ let skyColor = {
     }
 }
 
-// Left Eye properties
-let eyeL = 
+// Ball Object
+let ball  =
 {
-  x: maxX/2 - spacing,
-  y: maxY/2,
-  height: 80,
-  width: 120,
+  x:250,
+  y:250,
+  height: 25,
+  width: 25,
 }
 
-// Right Eye properties
-let eyeR = 
-{
-  x: maxX/2 + spacing,
-  y: maxY/2,
-  height: 80,
-  width: 120,
-}
-
-// Left pupil properties
-let pupilL = 
-{
-  x: maxX/2 - spacing,
-  y: maxY/2,
-  directionX: 0,
-  directionY: 1,
+let resetButton = {
+  x: 10,
+  y: 10,
+  width: 100,
   height: 50,
-  width: 10,
+  color:
+  {
+    r: 255,
+    g: 0,
+    b: 0
+  }
 }
 
-// Right pupil properties
-let pupilR = 
-{
-  x: maxX/2 + spacing,
-  y: maxY/2,
-  directionX: 0,
-  directionY: 1,
+let toggleColorButton = {
+  x: maxX - 110,
+  y: 10,
+  width: 100,
   height: 50,
-  width: 10,
+  currentColor: "#FFFFFF",
+  white: "#FFFFFF",
+  black: "#000000",
+  isWhite: true
 }
-
-// Left eye shine properties
-let shineL = 
-{
-  x: maxX/2 - spacing,
-  y: maxY/2,
-  height: 5,
-  width: 10,
-  offset: 5,
-}
-
-// right eye shine properties
-let shineR = 
-{
-  x: maxX/2 + spacing,
-  y: maxY/2,
-  height: 5,
-  width: 10,
-  offset: 5,
-}
-
-// Head coordinates
-let head = 
-{
-  x1: maxX/2 - spacing*1.5,
-  y1: maxY/2 - spacing*1.5,
-  x2: 0,
-  y2: 0,
-  x3: maxX,
-  y3: 0,
-  x4: maxX/2 + spacing*1.5,
-  y4: maxY/2 - spacing*1.5
-}
-
 
 /**
  * Create the canvas
  */
 function setup() {
   createCanvas(maxX, maxY);
+  background(0,0,0);
 }
 
 /**
  * Draw the head, eyes, pupil and eyeshine, and make the pupils follow the mouse
  */
 function draw() {
-  background(skyColor.fill.r, skyColor.fill.g, skyColor.fill.b);
 
-  // Draw the Head
   push()
-  noStroke()
-  fill(255,255,0)
-  quad(head.x1,head.y1,head.x2,head.y2,head.x3,head.y3,head.x4,head.y4);
+  rect(resetButton.x, resetButton.y, resetButton.width, resetButton.height);
+  text("Reset", resetButton.x + 10, resetButton.y + resetButton.height/2 + 5);
   pop()
 
-  // Draw the eye sockets
-  push();
-  fill(255,255,0);
-  ellipse(eyeL.x, eyeL.y, eyeL.width, eyeL.height);
-  ellipse(eyeR.x, eyeR.y, eyeR.width, eyeR.height);
-  pop();
+  push()
+  stroke(255,0,0);
+  fill(toggleColorButton.currentColor);
+  rect(toggleColorButton.x, toggleColorButton.y, toggleColorButton.width, toggleColorButton.height);
 
-  // Draw the pupils
-  push();
-  fill(0,0,0);
-  ellipse(pupilL.x, pupilL.y, pupilL.width, pupilL.height);
-  ellipse(pupilR.x, pupilR.y, pupilR.width, pupilR.height);
-  pop();
+  fill(toggleColorButton.isWhite ? 0 : 255);
+  text(toggleColorButton.isWhite ? "Erase" : "Draw", toggleColorButton.x + 10, toggleColorButton.y + toggleColorButton.height/2 + 5);
+  pop()
 
-  // Draw the eye shine
-  push();
-  fill(255,255,255);
-  noStroke();
-  ellipse(pupilL.x + shineL.offset, pupilL.y, shineL.width, shineL.height);
-  ellipse(pupilR.x + shineR.offset, pupilR.y, shineR.width, shineR.height);  
-  pop();
-
-  // Call the movePupil function to make pupil move
-  movePupil();
+  spawnBall();
 }
 
 
-/***
- * This function will make the pupil move towards the cursor.
- * Its movement are limited by its eye socket
- */
-function movePupil()
-{
 
-  // Left pupil movement and constraint in the X direction
-  pupilL.x += pupilL.directionX * constantSpeed;
-  pupilL.x = constrain(pupilL.x, eyeL.x - eyeL.width/2 + pupilL.width/2, eyeL.x + eyeL.width/2 - pupilL.width/2)
+function spawnBall(){
+  if(mouseIsPressed){
+    push()
+    noStroke();
+    ball.x = mouseX;
+    ball.y = mouseY;
+    fill(toggleColorButton.currentColor);
+    ellipse(ball.x, ball.y, ball.width, ball.height);
+    pop()
+  }
+}
 
-  // Left pupil movement and constraint in the Y direction
-  pupilL.y += pupilL.directionY * constantSpeed;
-  pupilL.y = constrain(pupilL.y, eyeL.y - eyeL.height/2 , eyeL.y + eyeL.height/2 )
+function mousePressed(){
+  if(mouseX > resetButton.x && mouseX < resetButton.x + resetButton.width && mouseY > resetButton.y && mouseY < resetButton.y + resetButton.height){
+    background(0,0,0);
+  } else if(mouseX > toggleColorButton.x && mouseX < toggleColorButton.x + toggleColorButton.width && mouseY > toggleColorButton.y && mouseY < toggleColorButton.y + toggleColorButton.height){
+    toggleColor();
+  } 
+}
 
-  // Right pupil movement and constraint in the X direction
-  pupilR.x += pupilR.directionX * constantSpeed;
-  pupilR.x = constrain(pupilR.x, eyeR.x - eyeR.width/2 + pupilR.width/2, eyeR.x + eyeR.width/2 - pupilR.width/2)
+function toggleColor(){
+  toggleColorButton.isWhite = !toggleColorButton.isWhite;
+  toggleColorButton.currentColor = toggleColorButton.isWhite ? toggleColorButton.white : toggleColorButton.black;
+}
+
   
-  // Right pupil movement and constraint in the Y direction
-  pupilR.y += pupilR.directionY * constantSpeed;
-  pupilR.y = constrain(pupilR.y, eyeR.y - eyeR.height/2, eyeR.y + eyeR.height/2)
 
-
-  // Change the left pupil movement direction based on its current position compared to the mouse
-  pupilL.directionX = pupilL.x < mouseX ? 1 : -1;
-  pupilL.directionY = pupilL.y < mouseY ? 1 : -1;
-
-  // Change the right pupil movement direction based on its current position compared to the mouse
-  pupilR.directionX = pupilR.x < mouseX ? 1 : -1;
-  pupilR.directionY = pupilR.y < mouseY ? 1 : -1;
-
-}
 
 
