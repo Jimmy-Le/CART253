@@ -1,8 +1,8 @@
 /**
- * Bouncy DVD
+ * Yo Yoyo
  * Jimmy Le
  *
- * Watch the ball bounce on the walls, maybe it hits the corner!
+ * Watch the yoyo yoyo around 
  * 
  */
 
@@ -13,20 +13,33 @@ let maxY = 500;
 
 // Ball Properties
 let ball = {
-  x: 67,
+  x: 100,
   y: 300,
+  startX: 100,
+  startY: 0,
+  finalX: maxX - 100,
+  finalY: maxY,
   size: 50,
   offset: 25,
   directionX: 1,
-  directionY: -1,
+  directionY: 1,
   speed: 1,
-  color:
-    {
-      r: 20,
-      g: 200,
-      b: 200
-    }
-  
+  color: "#47f2ef",
+  baseColor: "#FFFFFF",
+  touchColor: "#ffc338",
+  outlineColor: "#FFFFFF"
+}
+
+// String Properties
+let string =
+{
+  x1: maxX/2,
+  y1: 0,
+  x2: ball.x,
+  y2: ball.y,
+  color: "#FFFFFF",
+  baseColor: "#FFFFFF",
+  touchColor: "#ffc338",
 }
 
 /**
@@ -37,57 +50,66 @@ function setup() {
 }
 
 /**
- * Draw and update the position of the ball
+ * Draw and update the position of the ball and string
  */
 function draw() {
   background(0, 0, 0);
 
+  // Setup the string color and draw the shape
+  push();
+  stroke(string.color);
+  line(string.x1, string.y1, string.x2, string.y2);
+  pop();
+
   // Setup the ball color and draw the shape
   push();
-  fill(ball.color.r, ball.color.g, ball.color.b)
+  stroke(ball.outlineColor);
+  fill(ball.color);
   ellipse(ball.x, ball.y, ball.size, ball.size);
   pop();
   
 
   // Move the ball 
-  // moveBall();
+  moveBall();
+  changeColor();
 }
 
 
 /***
- * This function will move the ball and change its direction once it hits a border
- * This function will also call the changeColor function as well.
+ * This function will move the ball and change its direction once it hits a the set limit
+ * The ball will also change vertical direction if it hits the center of the canvas
  */
 function moveBall()
 {
   // Move the ball in the X and Y direction, based on its direction and speed
   ball.x += ball.directionX * ball.speed;
-  ball.y += ball.directionY * ball.speed;
+  ball.y += ball.directionY * ball.speed * 2.5;
+  ball.y = constrain(ball.y, ball.startY - ball.size, ball.finalY - ball.offset);
 
-  // If the ball hits the left or right wall of the canvas (including its own size)
-  // Change the X direction and randomize its color
-  if(ball.x <= 0 + ball.offset || ball.x >= maxX - ball.offset )
+  // Update the string position to follow the ball
+  string.x2 = ball.x;
+  string.y2 = ball.y;
+
+  // If the ball hits the left or right limit, change its direction in both X and Y
+  if(ball.x <= ball.startX || ball.x >= ball.finalX)
   {
-      ball.directionX = ball.directionX * -1;
-      changeColor();
+    ball.directionX *= -1;
+    ball.directionY *= -1;
   }
 
-  // If the ball hits the top or bottom wall of the canvas (including its own size)
-  // Change the Y direction and randomize its color
-  if(ball.y <= 0 + ball.offset || ball.y >= maxY - ball.offset )
-  {
-      ball.directionY = ball.directionY * -1;
-      changeColor();
+  // If the ball is at the center of the canvas, change its vertical direction
+  if(ball.x + ball.offset === maxX/2 ){
+    ball.directionY *= -1;
   }
 }
 
 /***
- * This function will randomize the stored color values of the Ball object
+ * This function will change the color of the ball and string if the ball is touching the bottom of the canvas
+ * If the ball is not touching the bottom of the canvas, it will change the color back to its base color
  */
 function changeColor()
 {
-  ball.color.r = random(0,255);
-  ball.color.g = random(0,255);
-  ball.color.b = random(0,255);
+  ball.outlineColor = ball.y + ball.offset >= ball.finalY ? ball.touchColor : ball.baseColor;
+  string.color = ball.y + ball.offset >= ball.finalY ? string.touchColor : string.baseColor;
 }
 
