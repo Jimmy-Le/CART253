@@ -1,14 +1,14 @@
-# Furious Furious
+# Power Pong
 
 Jimmy Le
 
-[View this project online](https://jimmy-le.github.io/CART253/Assignment2/Prototype2/index.html)
+[View this project online](https://jimmy-le.github.io/CART253/Assignment3/Prototype2/index.html)
 
 ## Description
 
-This prototype shows pong being played by itself
+This prototype shows a game of pong where the player can control the left paddle.
 
-![auto pong](./assets/images/AutoPong.png)
+![auto pong](./assets/images/PowerPong.png)
 
 ## Attribution
 

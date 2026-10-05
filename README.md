@@ -30,5 +30,5 @@ This website is used to display the projects made in the CART 253 class
 
 **Assignment 3** 
 - [Yo Yoyo](./Assignment3/Prototype1/index.html)
-- [Nuh uh](./Assignment3/Prototype2/index.html)
+- [Power Pong](./Assignment3/Prototype2/index.html)
 - [TBD](./Assignment3/Prototype3/index.html)

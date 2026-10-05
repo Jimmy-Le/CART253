@@ -1,4 +1,4 @@
-# Furious Furious
+# Auto Pong
 
 Jimmy Le
 
