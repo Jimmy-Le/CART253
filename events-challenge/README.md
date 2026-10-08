@@ -2,11 +2,11 @@
 
 Jimmy Le
 
-[View this project online](https://jimmy-le.github.io/CART253/conditionals-challenge/index.html)
+[View this project online](https://jimmy-le.github.io/CART253/events-challenge/index.html)
 
 ## Description
 
-This challenge practices the use of if statements, through making a user touch a puck and a puck touch a target.
+This challenge experiments with the different events handled by javascript and P5js
 
 ## Attribution
 

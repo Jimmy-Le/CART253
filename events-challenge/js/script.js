@@ -168,4 +168,3 @@ function mouseDragged() {
 function mouseMoved() {
   lose();
 }
-
