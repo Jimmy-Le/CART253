@@ -1,10 +1,8 @@
 /**
- * Power Pong
+ * Carnival
  * Jimmy Le
  *
- * A game of pong where the player controls the left paddle and the computer controls the right paddle. The ball will bounce off the paddles and walls, and will reset if it goes out of bounds.
- * The player can move the paddle wherever and must try to overpower the computer
- * 
+ * Press space repeatedly and make the ball hit the bell to produce a sound!
  */
 
 "use strict";
@@ -12,12 +10,14 @@
 let maxX = 700;             
 let maxY = 500;
 
+// Variables that affect the movement of the ball
 let gravity = 2;
-
-
 let force = 50;
 
-// Left Paddle Object
+// Sound effect
+let bellSound;
+
+// The big platform thing
 let platform = 
 {
   x: maxX/2 - 35,
@@ -31,7 +31,7 @@ let platform =
   color: "#ecc61d"
 }
 
-// Left Paddle Object
+// The line in the middle which the ball follows
 let line = 
 {
   x: maxX/2 + 12.5,
@@ -45,6 +45,7 @@ let line =
   color: "#ffffff"
 }
 
+// The base of the platform
 let base = 
 {
   x: maxX/2 - 45,
@@ -57,8 +58,6 @@ let base =
   speed: 2,
   color: "#f8981b"
 }
-
-
 
 // Ball Object
 let ball  =
@@ -74,7 +73,9 @@ let ball  =
   speed: 2,
   color: "#ff0000"
 
-}// Bell Object
+}
+
+// Bell Object
 let bell  =
 {
   x:maxX/2 - 10.5,
@@ -86,16 +87,18 @@ let bell  =
   directionY: -1,
   speed: 2,
   color: "#ffffff"
-
 }
 
 
 /**
- * Create the canvas
+ * Create the canvas and set up the bell sound
  */
 function setup() { 
   createCanvas(maxX, maxY);
-  background(255,255,255)
+  background(255,255,255);
+
+  bellSound = createAudio("assets/sounds/bark.wav");
+  bellSound.volume(0.2);
 }
 
 /**
@@ -103,14 +106,23 @@ function setup() {
  */
 function draw() {
   background(0,0,0)
+
   push()
-  // Instantiate Left Paddle
+  fill("#FFFFFF");
+  text("Press Space!", maxX/2 - 20, 470, 100, 50);
+  pop()
+
+
+  push()
+  // Instantiate Platform
   fill(platform.color);
   rect(platform.x, platform.y, platform.width, platform.height)
 
+  // Instantiate the Line
   fill(line.color);
   rect(line.x, line.y, line.width, line.height)
 
+  // Instantiate the base
   fill(base.color);
   rect(base.x, base.y, base.width, base.height)
 
@@ -118,35 +130,50 @@ function draw() {
   fill(ball.color);
   rect(ball.x, ball.y, ball.width, ball.height)
 
+  // Instantiate the bell
   fill(bell.color);
   rect(bell.x, bell.y, bell.width, bell.height)
-
   pop()
 
+  // Apply gravity to the ball
   fall();
 
 }
 
 
 /***
- * This function makes the rocks fall down, except if they are touching eachother or are getting dragged by the mouse
+ * This function makes the ball fall down
  */
 function fall()
 {
-
   ball.y += gravity;
-  ball.y = constrain(ball.y, bell.y + bell.height, ball.originY);
+  ball.y = constrain(ball.y, bell.y + bell.height, ball.originY - ball.height);   // Limit it between the originY and the bottom of the bell
 
 }
 
+/***
+ * This event function triggers when a key is pressed.
+ * It checks if the space button (code 32) is pressed and moves the ball upwards
+ * If the ball hits the bell, play a sound
+ */
 function keyPressed()
 { 
+  // If the player presses space
   if(keyCode === 32)
   {
-      ball.y -= force;
-      ball.y = constrain(ball.y, bell.y + bell.height, ball.originY);
+    // Apply an upward force to the ball
+    ball.y -= force;
+    ball.y = constrain(ball.y, bell.y + bell.height, ball.originY - ball.height);
+    
+
+    // Play sound when ball hits the bell
+    if(ball.y === bell.y + bell.height)
+    {
+      bellSound.play();
+    }
   }
 }
+
 
 
 
