@@ -1,6 +1,32 @@
 # Reflective Journal
 ---
-## (NEW) 05 October 2026
+## (NEW) 19 October 2026
+
+Events are fun things to look into. I usually stuggle with this topic, but with the in-class challenge and p5js's version of them make it a lot more understandable.
+
+Unfortunately, this past week I have been swamped with work from other classes and work :|
+Thus, this week focuses more on using different types of events rather than being super creative and complex with it.
+
+For Rock Stacker, I wanted to work with the drag and drop event. 
+At first I only used the drag and drop, but that caused a weird bug where the rocks wouldn't follow the mouse cursor. Instead it would teleport and stop moving. After looking around, the solution was to incorporate a `mousePressed()` event to "select" the rock.
+
+There is also a "bug" where the code is set up so that the rocks don't fall into each other by checking collisions. But, that made it so that when the rocks touch eachother midair, they both stop falling. I kept in the "feature" cause it was kinda fun to remove the rock underneath and stack it on top.
+
+![Rock Stacker](./Assignment4/Prototype1/assets/images/Rocks.png)
+
+For Carnival, I wanted to use keyboard events.
+The first thing that popped up in my head is that one hammer game with the bell. This also gave me the opportunity to experiment with using sound effects.
+I tried using the p5.js's `loadSound()`, but it was causing me a bunch of errors. So i instead used the p5.js's DOM `createAudio` to handle it, and it worked perfectly.
+
+![Carnival](./Assignment4/Prototype2/assets/images/image.png)
+
+At the point of making Insomnia, I was bombarded with all the anouncements of the assignments due xd.
+So I kept it simple and made it use a simple `mouseMoved()` event to wake up the eye. I then later include `mousePressed()` to include more mouse stuff.
+
+![Insomnia](./Assignment4/Prototype3/assets/images/image.png)
+
+---
+## 05 October 2026
 
 This is gonna be a reoccuring topic, but I also don't really know what to do for the "Conditional" prototyping, so I just kinda did random projects that has an if/else statement in it.
 
