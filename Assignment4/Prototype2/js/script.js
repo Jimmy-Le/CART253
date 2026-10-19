@@ -12,13 +12,10 @@
 let maxX = 700;             
 let maxY = 500;
 
-let gravity = 1;
+let gravity = 2;
 
 
-let ballAcceleration = 1;
-let baseBallAcceleration = 1;
-let ballAccelerationIncrement = 0.1;
-let maxBallAcceleration = 10;
+let force = 50;
 
 // Left Paddle Object
 let platform = 
@@ -126,6 +123,8 @@ function draw() {
 
   pop()
 
+  fall();
+
 }
 
 
@@ -138,6 +137,15 @@ function fall()
   ball.y += gravity;
   ball.y = constrain(ball.y, bell.y + bell.height, ball.originY);
 
+}
+
+function keyPressed()
+{ 
+  if(keyCode === 32)
+  {
+      ball.y -= force;
+      ball.y = constrain(ball.y, bell.y + bell.height, ball.originY);
+  }
 }
 
 
