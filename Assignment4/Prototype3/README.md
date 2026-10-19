@@ -2,13 +2,13 @@
 
 Jimmy Le
 
-[View this project online](https://jimmy-le.github.io/CART253/Assignment3/Prototype3/index.html)
+[View this project online](https://jimmy-le.github.io/CART253/Assignment4/Prototype3/index.html)
 
 ## Description
 
-This prototype offers a canvas for viewers to draw in. They can only draw in black and white.
+This prototype simulates someone who is very sensitive to mouse movements. Clicking or moving the mouse will wake them up!
 
-![Canvas](./assets/images/Canvas.png)
+![Insomnia](./assets/images/image.png)
 
 ## Attribution
 > - This project uses [p5.js](https://p5js.org).

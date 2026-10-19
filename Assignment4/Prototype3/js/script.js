@@ -1,8 +1,9 @@
 /**
- * Canvas
+ * Insomnia
  * Jimmy Le
  *
- * An empty canvas where the user can draw on the screen by clicking and dragging the mouse. The user can also reset the canvas to a blank state or toggle between drawing and erasing.
+ * An eye that is very sensitive to mouse inputs.
+ * 
  */
 
 "use strict";
@@ -11,34 +12,39 @@
 let maxX = 500;
 let maxY = 500;
 
+let maxH = 200;
 
-// Ball Object
-let ball  =
+let eyeCloseRate = 1;
+
+
+// Eye Object
+let eye  =
 {
-  x:250,
-  y:250,
-  height: 25,
-  width: 25,
+  x:maxX / 2,
+  y:maxY / 2,
+  h: 200,
+  w: 500,
+  color: "#ffefef"
 }
 
-// Button to reset the canvas
-let resetButton = {
-  x: 10,
-  y: 10,
-  width: 100,
-  height: 50,
+// iris Object
+let iris  =
+{
+  x:maxX / 2,
+  y:maxY / 2,
+  h: 200,
+  w: 200,
+  color: "#8ff3a0"
 }
 
-// Toggle button to switch between drawing and erasing
-let toggleColorButton = {
-  x: maxX - 110,
-  y: 10,
-  width: 100,
-  height: 50,
-  currentColor: "#FFFFFF",
-  white: "#FFFFFF",
-  black: "#000000",
-  isWhite: true
+// pupil Object
+let pupil = 
+{
+  x:maxX / 2,
+  y:maxY / 2,
+  h: 50,
+  w: 50,
+  color: "#000000"
 }
 
 /**
@@ -53,69 +59,70 @@ function setup() {
  * Draw the buttons and handle drawing or erasing on the canvas
  */
 function draw() {
-
-  // Draw the reset button
-  push()
-  rect(resetButton.x, resetButton.y, resetButton.width, resetButton.height);
-  text("Reset", resetButton.x + 10, resetButton.y + resetButton.height/2 + 5);
+  background(0);
+  
+  // Instantiate the eye
+  push();
+  fill(eye.color);
+  ellipse(eye.x, eye.y, eye.w, eye.h);
   pop()
 
-  // Draw the Toggle button and based on the current color selected, adjust the styling and text accordingly
-  push()
-  stroke(255,0,0);
-  fill(toggleColorButton.currentColor);
-  rect(toggleColorButton.x, toggleColorButton.y, toggleColorButton.width, toggleColorButton.height);
+  // Instantiate the iris
+  push();
+  fill(iris.color);
+  ellipse(iris.x, iris.y, iris.w, iris.h);
+  pop();
 
-  // Change the text color based on the current color selected
-  fill(toggleColorButton.isWhite ? 0 : 255);
-  text(toggleColorButton.isWhite ? "Erase" : "Draw", toggleColorButton.x + 10, toggleColorButton.y + toggleColorButton.height/2 + 5);
-  pop()
+  // Instantiate the pupil
+  push();
+  fill(pupil.color);
+  ellipse(pupil.x, pupil.y, pupil.w, pupil.h);
+  pop();
 
-  // Call the spawn ball (drawing) function
-  spawnBall();
-}
-
-
-/***
- * This function will spawn balls (draw) on the canvas where the mouse is.
- * A ball is spawned only if the mouse is pressed
- */
-function spawnBall(){
-  if(mouseIsPressed){
-
-    // Set the ball position to match the mouses and draw it
-    push()
-    noStroke();
-    ball.x = mouseX;
-    ball.y = mouseY;
-    fill(toggleColorButton.currentColor);
-    ellipse(ball.x, ball.y, ball.width, ball.height);
-    pop()
-  }
+  // Start closing the eye
+  closeEye();
 }
 
 /***
- * This function is one of the event handlers that is called when the mouse is pressed.
- * If the mouse is pressed and the mouse is over the reset or toggle button, do the appropriate action
+ * This function will slowly reduce the size of the eye and iris to simulate closing the eye
  */
-function mousePressed(){
-  // Reset the canvas by turning the background black
-  if(mouseX > resetButton.x && mouseX < resetButton.x + resetButton.width && mouseY > resetButton.y && mouseY < resetButton.y + resetButton.height){
-    background(0,0,0);
+function closeEye()
+{
+    // Reduce the height of the eyes and iris
+    eye.h -= eyeCloseRate;
+    iris.h -= eyeCloseRate;
 
-  } else if(mouseX > toggleColorButton.x && mouseX < toggleColorButton.x + toggleColorButton.width && mouseY > toggleColorButton.y && mouseY < toggleColorButton.y + toggleColorButton.height){
-    // Call the toggleColor function to switch between drawing and erasing
-    toggleColor();
-  } 
+    // Constrain the height so it doesn't go into the negatives
+    eye.h = constrain(eye.h, 1, maxH);
+    iris.h = constrain(iris.h, 1, maxH);
 }
 
 /***
- * This function will toggle the color of the toggleColorButton, which affects the toggle button styling and the ball color.
+ * This function will reset the height of the eye and iris to the original size
  */
-function toggleColor(){
-  toggleColorButton.isWhite = !toggleColorButton.isWhite;
-  toggleColorButton.currentColor = toggleColorButton.isWhite ? toggleColorButton.white : toggleColorButton.black;
+function openEye()
+{
+  eye.h = maxH;
+  iris.h = maxH;
 }
+
+/***
+ * This event function will open the eye on mouse movement
+ */
+function mouseMoved()
+{
+  openEye();
+}
+
+/***
+ * This event function will open the eye on mouse press
+ */
+function mousePressed()
+{
+  openEye();
+}
+
+
 
   
 
