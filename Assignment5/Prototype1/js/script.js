@@ -32,7 +32,37 @@ function setup() {
  * Draw and update the position of the rocks
  */
 function draw() {
+  drawTiles();
 
+}
+
+
+function drawTiles()
+{
+  let counter = 0;
+  for (let i = 0; i < width; i += squareTile.size)
+  {
+    for(let j = 0; j < height; j += squareTile.size)
+    {
+      push()
+    
+      if(counter % 2 == 0)
+      {
+        fill(white);
+      }
+      else 
+      {
+        fill(black);
+      }
+      
+      rect(squareTile.x + i, squareTile.y + j, squareTile.size, squareTile.size);
+      
+      pop();
+      counter++;
+
+    }
+
+  }
 }
 
 
