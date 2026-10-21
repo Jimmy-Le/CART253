@@ -20,8 +20,27 @@ const ball = {
     }
 };
 
+// Our ball
+const ball2 = {
+    x: 200,
+    y: 200,
+    width: 10,
+    height: 10,
+    velocity: {
+        x: 0,
+        y: 10
+    }
+};
+
 // Our paddle
 const paddle = {
+    x: 300,
+    y: 280,
+    width: 80,
+    height: 10
+};
+// Our paddle
+const paddle2 = {
     x: 300,
     y: 280,
     width: 80,
@@ -43,12 +62,20 @@ function draw() {
     background("#87ceeb");
 
     movePaddle(paddle);
+    movePaddle2(paddle2);
     moveBall(ball);
+    moveBall(ball2);
 
     handleBounce(ball, paddle);
+    handleBounce(ball2, paddle);
+
+    handleBounce(ball,paddle2);
+    handleBounce(ball2,paddle2);
 
     drawPaddle(paddle);
+    drawPaddle(paddle2);
     drawBall(ball);
+    drawBall(ball2);
 }
 
 /**
@@ -59,11 +86,27 @@ function movePaddle(paddle) {
   paddle.x = constrain(paddle.x,0 + paddle.width/2, width - paddle.width/2 );
 }
 
+function movePaddle2(paddle) {
+  paddle.x = mouseY;
+  paddle.x = constrain(paddle.x,0 + paddle.width/2, width - paddle.width/2 );
+}
+
 /**
  * Moves the ball passed in as a parameter
  */
 function moveBall(ball) {
+
+
+  let isTouchWallY = ball.y <= 0 || ball.y + ball.height >= height;
+
+  if(isTouchWallY)
+  {
+    ball.velocity.y = ball.velocity.y * -1;
+  }
+
   ball.y += ball.velocity.y;
+
+  
 
 }
 
@@ -71,7 +114,10 @@ function moveBall(ball) {
  * Bounces the provided ball off the provided paddle
  */
 function handleBounce(ball, paddle) {
-  if(checkOverlap(ball, paddle))
+
+  let isTouchWallY = ball.y <= 0 || ball.y + ball.height  >= height;
+
+  if(checkOverlap(ball, paddle) || isTouchWallY)
   {
     ball.velocity.y = ball.velocity.y * -1;
   }
