@@ -9,6 +9,17 @@
 let maxX = 500;
 let maxY = 500;
 
+let white = "#FFFFFF"
+let black = "#000000"
+
+let squareTile = 
+{
+  x: 0,
+  y: 0,
+  size: 100,
+  currentColor: white,
+}
+
 
 /**
  * Create the canvas
