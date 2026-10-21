@@ -1,4 +1,4 @@
-# Dont Play
+# Bouncy Ball
 
 Jimmy Le
 
@@ -6,7 +6,7 @@ Jimmy Le
 
 ## Description
 
-This challenge experiments with the different events handled by javascript and P5js
+This challenge experiments with functions and the reusability of it.
 
 ## Attribution
 

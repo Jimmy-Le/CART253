@@ -16,6 +16,7 @@ This website is used to display the projects made in the CART 253 class
 2. [Variables Challenge](./variables-challenge/index.html)
 3. [Conditional Challenge](./conditionals-challenge/index.html)
 4. [Events Challenge](./events-challenge/index.html)
+5. [Function Challenge](./functions-challenge/index.html)
 
 ## Assignments
 
