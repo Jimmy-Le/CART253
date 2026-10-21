@@ -1,0 +1,23 @@
+# Rock Stacker
+
+Jimmy Le
+
+[View this project online](https://jimmy-le.github.io/CART253/Assignment4/Prototype1/index.html)
+
+## Description
+
+This project allows the users to stack rocks on top of each other and make them float
+
+![Rocks](./assets/images/Rocks.png)
+
+## Attribution
+
+This bit should attribute any code, assets or other elements used taken from other sources. For example:
+
+> - This project uses [p5.js](https://p5js.org).
+
+## License
+
+This bit could include the license you want to apply to your work. For example:
+
+> This project is licensed under a Creative Commons Attribution ([CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.en)) license with the exception of libraries and other components with their own licenses.
