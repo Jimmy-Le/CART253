@@ -63,6 +63,7 @@ function movePaddle(paddle) {
  * Moves the ball passed in as a parameter
  */
 function moveBall(ball) {
+  ball.y += ball.velocity.y;
 
 }
 
