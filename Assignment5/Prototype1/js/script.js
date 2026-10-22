@@ -60,8 +60,9 @@ function draw() {
   push()
   fill(coin.color);
   rect(coin.x,coin.y, coin.size, coin.size);
-
   pop();
+
+  // console.log(dist(player.x, player.y, coin.x, coin.y));
 
 }
 
@@ -92,6 +93,42 @@ function drawTiles()
     }
 
   }
+
+
+  function keyPressed()
+  {
+    switch (key)
+    {
+      case "w":
+
+    }
+    
+  }
+
+  function checkMovement(xDirection = 0, yDirection = 0)
+  {
+    if(xDirection > 0)
+    {
+      return player.x + size < width;
+    }
+    else if (xDirection < 0)
+    {
+      return player.x - size > 0;
+    }
+
+    if(yDirection > 0)
+    {
+      return player.y + size < height;
+    } 
+    else if (yDirection < 0)
+    {
+      return player.y - size < 0;
+    }
+
+
+  }
+
+
 }
 
 
