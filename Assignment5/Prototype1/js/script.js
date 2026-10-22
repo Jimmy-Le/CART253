@@ -16,8 +16,24 @@ let squareTile =
 {
   x: 0,
   y: 0,
-  size: 100,
-  currentColor: white,
+  size: 100
+}
+
+let player =
+{
+  x: 25,
+  y: 25,
+  size: 50,
+  color: "#FF0000"
+}
+
+let coin =
+{
+  x: 30,
+  y: 30,
+  size: 40,
+  color: "#FFFF00"
+
 }
 
 
@@ -33,6 +49,19 @@ function setup() {
  */
 function draw() {
   drawTiles();
+
+  
+
+  push()
+  fill(player.color);
+  rect(player.x, player.y, player.size, player.size);
+  pop()
+
+  push()
+  fill(coin.color);
+  rect(coin.x,coin.y, coin.size, coin.size);
+
+  pop();
 
 }
 
