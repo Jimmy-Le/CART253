@@ -9,6 +9,8 @@
 let maxX = 500;
 let maxY = 500;
 
+let steps = 100;
+
 let white = "#FFFFFF"
 let black = "#000000"
 
@@ -50,8 +52,6 @@ function setup() {
 function draw() {
   drawTiles();
 
-  
-
   push()
   fill(player.color);
   rect(player.x, player.y, player.size, player.size);
@@ -63,7 +63,6 @@ function draw() {
   pop();
 
   // console.log(dist(player.x, player.y, coin.x, coin.y));
-
 }
 
 
@@ -89,71 +88,70 @@ function drawTiles()
       
       pop();
       counter++;
-
     }
+  }
+}
 
+function keyPressed()
+{
+  switch (key)
+  {
+    case "w":
+      if(checkMovement(0,-1))
+      {
+        player.y -= steps;
+      }
+      break;
+    case "s":
+      if(checkMovement(0,1))
+      {
+        player.y += steps;
+      }
+      break;
+    case "a":
+      if(checkMovement(-1,0))
+      {
+        player.x -= steps;
+      }
+      break;
+    case "d":
+      if(checkMovement(1,0))
+      {
+        player.x += steps;
+      }
+      break;
+    default:
+      console.log(key);
+      break;     
+  }
+}
+
+
+function checkMovement(xDirection = 0, yDirection = 0)
+{
+  if(xDirection > 0)
+  {
+    return player.x + steps < width;
+  }
+  else if (xDirection < 0)
+  {
+    return player.x - steps > 0;
   }
 
-
-  function keyPressed()
+  if(yDirection > 0)
   {
-    switch (key)
-    {
-      case "w":
-        if(checkMovement(0,-1))
-        {
-          player.y -= player.size;
-        }
-        break;
-      case "s":
-        if(checkMovement(0,1))
-        {
-          player.y += player.size;
-        }
-        break;
-      case "a":
-        if(checkMovement(-1,0))
-        {
-          player.x -= player.size;
-        }
-        break;
-      case "a":
-        if(checkMovement(1,0))
-        {
-          player.x += player.size;
-        }
-        break;
-      default:
-        break;     
-    }
-    
-  }
-
-  function checkMovement(xDirection = 0, yDirection = 0)
+    return player.y + steps < height;
+  } 
+  else if (yDirection < 0)
   {
-    if(xDirection > 0)
-    {
-      return player.x + size < width;
-    }
-    else if (xDirection < 0)
-    {
-      return player.x - size > 0;
-    }
-
-    if(yDirection > 0)
-    {
-      return player.y + size < height;
-    } 
-    else if (yDirection < 0)
-    {
-      return player.y - size < 0;
-    }width
-
-
+    return player.y - steps > 0;
   }
 
 
 }
+
+
+
 
 
 
