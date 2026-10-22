@@ -10,6 +10,7 @@ let maxX = 500;
 let maxY = 500;
 
 let steps = 100;
+let tolerance = 20;
 
 let white = "#FFFFFF"
 let black = "#000000"
@@ -37,7 +38,6 @@ let coin =
   color: "#FFFF00"
 
 }
-
 
 /**
  * Create the canvas
@@ -148,6 +148,14 @@ function checkMovement(xDirection = 0, yDirection = 0)
   }
 
 
+}
+
+function eatCoin()
+{
+  if(dist(player.x, player.y, coin.x, coin.y) < tolerance)
+  {
+    
+  }
 }
 
 
