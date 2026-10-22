@@ -100,7 +100,31 @@ function drawTiles()
     switch (key)
     {
       case "w":
-
+        if(checkMovement(0,-1))
+        {
+          player.y -= player.size;
+        }
+        break;
+      case "s":
+        if(checkMovement(0,1))
+        {
+          player.y += player.size;
+        }
+        break;
+      case "a":
+        if(checkMovement(-1,0))
+        {
+          player.x -= player.size;
+        }
+        break;
+      case "a":
+        if(checkMovement(1,0))
+        {
+          player.x += player.size;
+        }
+        break;
+      default:
+        break;     
     }
     
   }
@@ -123,7 +147,7 @@ function drawTiles()
     else if (yDirection < 0)
     {
       return player.y - size < 0;
-    }
+    }width
 
 
   }
