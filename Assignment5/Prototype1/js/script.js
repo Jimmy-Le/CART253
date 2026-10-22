@@ -154,8 +154,44 @@ function eatCoin()
 {
   if(dist(player.x, player.y, coin.x, coin.y) < tolerance)
   {
-    
+    let newCoordinate = randomPositionFromPlayer();
   }
+}
+
+function randomPositionFromPlayer()
+{
+  let valid = false;
+
+  let xOrY;
+  let positiveOrNegative;
+
+  do{
+
+    xOrY = random(0,2);                                                               // Randomly choose the vertical or horizontal movement of the player
+    positiveOrNegative = random(0,2);                                                 // Randomly choose to go in the negative direction or positive direction
+
+    // If xOrY is zero, change the x values
+    if(xOrY === 0)
+    {
+      valid = positiveOrNegative ? checkMovement(1,0) : checkMovement(-1,0);          // verify if that new position is a valid position. check the positive / negative movement depending on the randomly selected value.
+      if(valid)
+      {
+        return positiveOrNegative ? [1,0] : [-1,0]                                    // If the position is valid, return the "coordinates"
+      }
+    }
+    // If xOrY is 1 or other, change the Y values
+    else 
+    {
+      valid = positiveOrNegative ? checkMovement(0,1) : checkMovement(0,-1);          // verify if that new position is a valid position. check the positive / negative movement depending on the randomly selected value.
+
+      if(valid)
+      {
+        return positiveOrNegative ? [0,1] : [0,-1]                                    // If the position is valid, return the "coordinates"
+      }
+
+    }
+  } while(!valid)                                                                     // If movement is invalid, then try again.
+  
 }
 
 
