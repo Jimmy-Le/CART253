@@ -32,8 +32,8 @@ let player =
 
 let coin =
 {
-  x: 30,
-  y: 30,
+  x: 130,
+  y: 130,
   size: 40,
   color: "#FFFF00"
 
@@ -53,16 +53,18 @@ function draw() {
   drawTiles();
 
   push()
-  fill(player.color);
-  rect(player.x, player.y, player.size, player.size);
-  pop()
-
-  push()
   fill(coin.color);
   rect(coin.x,coin.y, coin.size, coin.size);
   pop();
 
+  push()
+  fill(player.color);
+  rect(player.x, player.y, player.size, player.size);
+  pop()
+
+
   // console.log(dist(player.x, player.y, coin.x, coin.y));
+  eatCoin();
 }
 
 
@@ -155,8 +157,24 @@ function eatCoin()
   if(dist(player.x, player.y, coin.x, coin.y) < tolerance)
   {
     let newCoordinate = randomPositionFromPlayer();
+    // console.log(newCoordinate[0], newCoordinate[1]);
+    moveCoin(newCoordinate[0], newCoordinate[1]);
   }
 }
+
+/***
+ * This function will in theory trigger when the player is stepping on the coin, making their positions on the board the same.
+ * Thus all movement relative to the player will be relative to the coin
+ * Multiplying the steps by the value will also result in negatives, 0 or positive value of the steps.
+ */
+function moveCoin(x, y)
+{
+  coin.x += steps * x;
+  coin.y += steps * y;
+}
+
+
+
 
 function randomPositionFromPlayer()
 {
@@ -167,11 +185,11 @@ function randomPositionFromPlayer()
 
   do{
 
-    xOrY = random(0,2);                                                               // Randomly choose the vertical or horizontal movement of the player
-    positiveOrNegative = random(0,2);                                                 // Randomly choose to go in the negative direction or positive direction
+    xOrY = Math.floor(random(0,2));                                                               // Randomly choose the vertical or horizontal movement of the player
+    positiveOrNegative = Math.floor(random(0,2));                                                 // Randomly choose to go in the negative direction or positive direction
 
     // If xOrY is zero, change the x values
-    if(xOrY === 0)
+    if(xOrY % 2 === 0)
     {
       valid = positiveOrNegative ? checkMovement(1,0) : checkMovement(-1,0);          // verify if that new position is a valid position. check the positive / negative movement depending on the randomly selected value.
       if(valid)
