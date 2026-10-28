@@ -16,6 +16,8 @@ let steps = 100;
 // The Tolerance for finding the distance between the coin and the player
 let tolerance = 20;     
 
+let counter = 0;
+
 // Named Colors
 let white = "#FFFFFF"
 let black = "#000000"
@@ -70,6 +72,12 @@ function draw() {
   push()
   fill(player.color);
   rect(player.x, player.y, player.size, player.size);
+  pop()
+
+  push()
+  fill("#0000FF");
+  textSize(20);
+  text("Coins: " + counter, 10, 20);
   pop()
 
   // Check if the player is on the coin
@@ -176,6 +184,7 @@ function eatCoin()
     let newCoordinate = randomPositionFromPlayer();
     // console.log(newCoordinate[0], newCoordinate[1]);
     moveCoin(newCoordinate[0], newCoordinate[1]);
+    counter++;
   }
 }
 
