@@ -16,6 +16,7 @@ let steps = 100;
 // The Tolerance for finding the distance between the coin and the player
 let tolerance = 20;     
 
+// The amount of coins the player has
 let counter = 0;
 
 // Named Colors
@@ -153,38 +154,42 @@ function keyPressed()
   }
 }
 
-
+/***
+ * This function checks if the movement of the player towards a given direction is feasible or not
+ */
 function checkMovement(xDirection = 0, yDirection = 0)
 {
-  if(xDirection > 0)
+  if(xDirection > 0)                        // Move to the Right
   {
     return player.x + steps < width;
   }
-  else if (xDirection < 0)
+  else if (xDirection < 0)                  // Move to the Left
   {
     return player.x - steps > 0;
   }
 
-  if(yDirection > 0)
+  if(yDirection > 0)                        // Move Down
   {
     return player.y + steps < height;
   } 
-  else if (yDirection < 0)
+  else if (yDirection < 0)                  // Move Up
   {
     return player.y - steps > 0;
   }
-
-
 }
 
+/***
+ * This function will check if the player is on top of the coin by checking the distance between them (with some tolerance accounted for)
+ * And change the position of the coin towards a feasible position adjacent to the player.
+ * Also increment the coin counter
+ */
 function eatCoin()
 {
   if(dist(player.x, player.y, coin.x, coin.y) < tolerance)
   {
-    let newCoordinate = randomPositionFromPlayer();
-    // console.log(newCoordinate[0], newCoordinate[1]);
-    moveCoin(newCoordinate[0], newCoordinate[1]);
-    counter++;
+    let newCoordinate = randomPositionFromPlayer();     // Find a new feasible position 
+    moveCoin(newCoordinate[0], newCoordinate[1]);       // Update position
+    counter++;                                          // Update Counter
   }
 }
 
@@ -201,7 +206,10 @@ function moveCoin(x, y)
 
 
 
-
+/***
+ * This function finds a random position from the player that is valid
+ * aka not outside the acceptable bounds (canvas)
+ */
 function randomPositionFromPlayer()
 {
   let valid = false;
