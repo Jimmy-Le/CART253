@@ -6,15 +6,21 @@
  * 
  */
 
+// Canvas Size
 let maxX = 500;
 let maxY = 500;
 
+// The amount of pixels for each movement
 let steps = 100;
-let tolerance = 20;
 
+// The Tolerance for finding the distance between the coin and the player
+let tolerance = 20;     
+
+// Named Colors
 let white = "#FFFFFF"
 let black = "#000000"
 
+// Tile object
 let squareTile = 
 {
   x: 0,
@@ -22,6 +28,7 @@ let squareTile =
   size: 100
 }
 
+// Player Object
 let player =
 {
   x: 25,
@@ -30,6 +37,7 @@ let player =
   color: "#FF0000"
 }
 
+// Coin Object
 let coin =
 {
   x: 130,
@@ -47,27 +55,30 @@ function setup() {
 }
 
 /**
- * Draw and update the position of the rocks
+ * Draw and update the position of the player and coin
  */
 function draw() {
   drawTiles();
 
+  // Draw Coin
   push()
   fill(coin.color);
   rect(coin.x,coin.y, coin.size, coin.size);
   pop();
 
+  // Draw Player
   push()
   fill(player.color);
   rect(player.x, player.y, player.size, player.size);
   pop()
 
-
-  // console.log(dist(player.x, player.y, coin.x, coin.y));
+  // Check if the player is on the coin
   eatCoin();
 }
 
-
+/***
+ * This function will generate a grid of square tiles with alternating colors
+ */
 function drawTiles()
 {
   let counter = 0;
@@ -77,53 +88,59 @@ function drawTiles()
     {
       push()
     
+      // If it is even numbered position, give it a white background
       if(counter % 2 == 0)
       {
         fill(white);
       }
+      // If it is odd, give it a black background
       else 
       {
         fill(black);
       }
       
+      // Draw the tile
       rect(squareTile.x + i, squareTile.y + j, squareTile.size, squareTile.size);
       
       pop();
+      // Increment the counter to keep track of odd and even numbers
       counter++;
     }
   }
 }
 
+/***
+ * Event function, waits for player movement input and sends the player in the corresponding direction if possible.
+ */
 function keyPressed()
 {
   switch (key)
   {
-    case "w":
+    case "w":                             // Move Up
       if(checkMovement(0,-1))
       {
         player.y -= steps;
       }
       break;
-    case "s":
+    case "s":                             // Move Down
       if(checkMovement(0,1))
       {
         player.y += steps;
       }
       break;
-    case "a":
+    case "a":                             // Move Left
       if(checkMovement(-1,0))
       {
         player.x -= steps;
       }
-      break;
-    case "d":
+      break;  
+    case "d":                             // Move
       if(checkMovement(1,0))
       {
         player.x += steps;
       }
       break;
     default:
-      console.log(key);
       break;     
   }
 }
