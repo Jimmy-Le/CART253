@@ -2,13 +2,13 @@
 
 Jimmy Le
 
-[View this project online](https://jimmy-le.github.io/CART253/Assignment4/Prototype1/index.html)
+[View this project online](https://jimmy-le.github.io/CART253/Assignment5/Prototype1/index.html)
 
 ## Description
 
 This project allows the users to stack rocks on top of each other and make them float
 
-![Rocks](./assets/images/Rocks.png)
+![Eating Coins](./assets/images/image.png)
 
 ## Attribution
 

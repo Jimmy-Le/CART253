@@ -1,8 +1,8 @@
 /**
- * Rock Stacker
+ * Eating Coins
  * Jimmy Le
  *
- * Stack the rocks! You can stack them mid-air and remove the bottom one to place on top!
+ * Run around and eat coins!
  * 
  */
 
