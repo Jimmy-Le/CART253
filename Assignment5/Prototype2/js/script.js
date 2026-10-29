@@ -37,6 +37,20 @@ function draw() {
 }
 
 
+function createLeaf(newX, newY)
+{
+  let newLeaf = {
+    x : newX,
+    y : newY,
+    h : 30,
+    w: 40,
+    color: "#51ff00"
+  }
+
+  leaves.push(newLeaf);
+}
+
+
 
 
 
