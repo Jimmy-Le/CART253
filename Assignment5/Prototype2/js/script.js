@@ -30,6 +30,7 @@ function setup() {
   rectMode(CENTER);
 
   createBranches(maxX/2, maxY/2, maxX/2 - 75, maxY/2 - 150);
+  createBranches(maxX/2, maxY/2, maxX/2 - 200, maxY/2 - 125);
   createBranches(maxX/2, maxY/2, maxX/2 + 200, maxY/2 - 50);
   createBranches(maxX/2 + 100, maxY/2 -30, maxX/2 + 150, maxY/2 - 100)
 }
