@@ -17,8 +17,6 @@ let treeTrunk = {
   w: 30
 }
 
-let branches = []
-
 let leaves = []
 
 /**
@@ -48,6 +46,19 @@ function createLeaf(newX, newY)
   }
 
   leaves.push(newLeaf);
+}
+
+function createBranches(newX1, newY1, newX2, newY2)
+{
+  let newBranch = {
+    x1 : newX1,
+    y1 : newY1,
+    x2 : newX2,
+    y2 : newY2,
+
+    color: "#4c3527"
+  }
+
 }
 
 
