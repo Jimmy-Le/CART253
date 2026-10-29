@@ -1,8 +1,8 @@
 /**
  * Fall
  * Jimmy Le
- *
- * Press space repeatedly and make the ball hit the bell to produce a sound!
+ * 
+ * Click mouse to make the leaves fall
  */
 
 "use strict";
@@ -10,7 +10,16 @@
 let maxX = 700;             
 let maxY = 500;
 
+let treeTrunk = {
+  x: maxX/2,
+  y: maxY/2,
+  h: 100,
+  w: 30
+}
 
+let branches = []
+
+let leaves = []
 
 /**
  * Create the canvas and set up the bell sound
@@ -18,7 +27,6 @@ let maxY = 500;
 function setup() { 
   createCanvas(maxX, maxY);
   background(255,255,255);
-
 }
 
 /**
