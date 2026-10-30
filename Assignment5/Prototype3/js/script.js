@@ -39,6 +39,7 @@ let focused = "#4a53ba"
 let playState = true;
 
 
+
 /**
  * Create the canvas
  */
@@ -84,8 +85,24 @@ function drawPlayButton()
 
 }
 
+function mousePressed()
+{
+  playState = !playState;
+}
 
 
+function createCircle(newX,newY)
+{
+  let newCircle = 
+  {
+    x: newX,
+    y: newY,
+    size: 50,
+    color: white
+  }
+
+  circles.push(newCircle);
+}
 
 
   
