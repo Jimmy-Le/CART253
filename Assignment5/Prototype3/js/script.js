@@ -22,6 +22,20 @@ let playButton =
   y3: maxY/2
 }
 
+let pauseBar = 
+{
+  x: maxX/2,
+  y: maxY/2,
+  w: 50,
+  h: 100
+}
+
+let circles = []
+let currentCircle = 0;
+
+let white = "#FFFFFF"
+let focused = "#4a53ba"
+
 
 /**
  * Create the canvas
