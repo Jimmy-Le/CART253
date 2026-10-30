@@ -33,11 +33,12 @@ let pauseBar =
 let circles = []
 let currentCircle = 0;
 
-let white = "#FFFFFF"
+let white = "#8186a3"
 let focused = "#4a53ba"
 
-let playState = true;
+let playState = false;
 
+let onCooldown = false;
 
 
 /**
@@ -65,7 +66,7 @@ function setup() {
 function draw() {
   background(0);
 
-  if(playState){
+  if(!playState){
     drawPlayButton();
   }
   else
@@ -82,6 +83,14 @@ function draw() {
     pop();
   }
   
+  if(playState)
+  {
+    if(!onCooldown)
+    {
+      onCooldown = true;
+      setTimeout(cycle, 50)
+    }
+  }
 
 }
 
@@ -125,12 +134,14 @@ function createCircle(newX,newY)
 function cycle()
 {
   currentCircle = currentCircle % circles.length;
-  let previousCircle = (currentCircle - 1) % circles.length;
+  let previousCircle = (currentCircle - 1 + circles.length) % circles.length;
   
   circles[currentCircle].color = focused;
   circles[previousCircle].color = white;
 
+  
   currentCircle++;
+  onCooldown = false;
 }
 
 
