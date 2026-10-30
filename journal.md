@@ -1,6 +1,34 @@
 # Reflective Journal
 ---
-## (NEW) 19 October 2026
+## (New) 30 October 2026
+
+I have read the feedback from the other assignments, and for this assignment I tried to keep that in mind while working on it.
+- There should be a a good amount of commit messages
+- The prototypes are a bit more diverse and creative (in my opinion at least)
+
+For the first prototype, I wanted to make a little "board game" where the movement is intended to be on tiles and similarly to pac-man you run around eating a coin.
+The main challenges is ensuring that the player and coin don't spawn out of bounds and are centered inside the tiles. 
+So by using helper functions, I calculate the potential position of the player and return a boolean indicating if that new position is valid or not. This is also reused for the next coin position, as I want it to spawn on a tile that is adjacent to the player.
+
+I then added in a text with the amount of coins to gamify it a bit more
+![Eat Coin](./Assignment5/Prototype1/assets/images/image.png)
+
+For the second prototype, It is a tree with falling leaves.
+I thought the idea of making leaves fall slowly and sway left and right would be interesting to make.
+I used functions in a way to not manually create multiple objects and incorporated the arrays from the lecture to be able to individually give each leaf its own movement. 
+The shaking of the leaves was originally an accident, since i generally use the random function to randomly determine if an object should have a positive or negative movement, but forget that it returns a float value instead of an int. So this time i gave it a large range of values and it ended up giving me this erratic motion that is pretty good for falling leaves.
+Using the modulo opperator, I can also easily cycle through the leaves again, which is kind of like the cycle of a tree.
+
+![Fall](./Assignment5/Prototype2/assets/images/image.png)
+
+For the third prototype, I wanted to use functions to rotate the positions of the circles when it is on play mode.
+However, due to time constraints, I will instead give the illusion that it is spinning around by having colored circles circle around in a circle.
+It isn't too complex, but i think it looks neat.
+
+![Pause/Play](./Assignment5/Prototype3/assets/images/image.png)
+---
+
+## 19 October 2026
 
 Events are fun things to look into. I usually stuggle with this topic, but with the in-class challenge and p5js's version of them make it a lot more understandable.
 
