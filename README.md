@@ -43,5 +43,5 @@ This website is used to display the projects made in the CART 253 class
 
 **Assignment 5**
 - [Eating Coins](./Assignment5/Prototype1/index.html)  [Github](https://github.com/Jimmy-Le/CART253/tree/main/Assignment5/Prototype1)
-- [Carnival](./Assignment5/Prototype2/index.html) [Github](https://github.com/Jimmy-Le/CART253/tree/main/Assignment5/Prototype2)
-- [Insomnia](./Assignment5/Prototype3/index.html) [Github](https://github.com/Jimmy-Le/CART253/tree/main/Assignment5/Prototype3)
+- [Fall](./Assignment5/Prototype2/index.html) [Github](https://github.com/Jimmy-Le/CART253/tree/main/Assignment5/Prototype2)
+- [Play/Pause](./Assignment5/Prototype3/index.html) [Github](https://github.com/Jimmy-Le/CART253/tree/main/Assignment5/Prototype3)
