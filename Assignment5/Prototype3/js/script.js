@@ -47,6 +47,16 @@ function setup() {
   createCanvas(maxX, maxY);
   rectMode(CENTER);
   background(0,0,0);
+
+  createCircle(maxX/2, maxY/2 - 175);
+  createCircle(maxX/2 + 125, maxY/2 - 125);
+  createCircle(maxX/2 + 175, maxY/2);
+  createCircle(maxX/2 + 125, maxY/2 + 125);
+  createCircle(maxX/2, maxY/2 + 175);
+  createCircle(maxX/2 - 125, maxY/2 + 125);
+  createCircle(maxX/2 - 175, maxY/2);
+  createCircle(maxX/2 - 125, maxY/2 - 125);
+
 }
 
 /**
@@ -64,6 +74,13 @@ function draw() {
     drawPauseButton(50);
   }
 
+  for(const circle of circles)
+  {
+    push()
+    ellipse(circle.x, circle.y, circle.size);
+
+    pop();
+  }
   
 
 }
