@@ -54,6 +54,13 @@ function draw() {
 
 }
 
+function drawPauseButton(xOffset)
+{
+  push();
+  rect(pauseBar.x + xOffset, pauseBar.y, pauseBar.w, pauseBar.h);
+  pop();
+}
+
 
 
 
