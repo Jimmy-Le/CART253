@@ -20,6 +20,8 @@ let treeTrunk = {
 let leaves = []
 let branches = []
 
+let currentLeaf = 0;
+
 /**
  * Create the canvas and set up the bell sound
  */
@@ -94,6 +96,14 @@ function createBranches(newX1, newY1, newX2, newY2)
   branches.push(newBranch);
 }
 
+
+function fall(leaf)
+{
+  leaf.x -= 1;
+  leaf.y -= 1;
+
+  leaf.y = constrain(leaf.y, 0, maxX - leaf.h/2 )
+}
 
 
 
