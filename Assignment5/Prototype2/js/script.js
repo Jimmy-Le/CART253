@@ -109,6 +109,13 @@ function fall(leaf)
 {
   leaf.x -= random(-6,6);
   leaf.y -= random(-3, -2);
+
+  if(leaf.y >= maxY + leaf.h + random(200, 400))
+  {
+    leaf.x = leaf.originX;
+    leaf.y = leaf.originY;
+    leaf.isFalling = false;
+  }
 }
 
 function mousePressed()
@@ -116,13 +123,7 @@ function mousePressed()
   currentLeaf = currentLeaf % leaves.length;
   let leaf = leaves[currentLeaf];
 
-  if(leaf.isFalling)
-  {
-    leaf.x = leaf.originX;
-    leaf.y = leaf.originY;
-    leaf.isFalling = false;
-  }
-  else
+  if(!leaf.isFalling)
   {
     leaves[currentLeaf].isFalling = true;
   }
