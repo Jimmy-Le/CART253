@@ -41,6 +41,8 @@ let currentCircle = 0;
 // Colors
 let white = "#8186a3"
 let focused = "#4a53ba"
+let before = "#4abaa7"
+let after = "#b44aba"
 
 // Current game state
 let playState = false;
@@ -101,11 +103,19 @@ function draw() {
   // If it is currently on Play mode, it will call the cycle function every 0.5 seconds to update the color of the current focused circle.
   if(playState)
   {
+
     if(!onCooldown)
     {
       onCooldown = true;
       setTimeout(cycle, 50)
     }
+  }
+  else 
+  {
+      for(const circle of circles)
+      {
+        circle.color = white;
+      }
   }
 
 }
@@ -165,11 +175,16 @@ function cycle()
   currentCircle = currentCircle % circles.length;
 
   // Add the whole circle length to the calculation to avoid negative numbers, then mod it by the length to get the previous index
+  let previousPreviousCircle = (currentCircle - 2 + circles.length) % circles.length;
   let previousCircle = (currentCircle - 1 + circles.length) % circles.length;
+  let nextCircle = (currentCircle + 1 + circles.length) % circles.length;
+
   
   // Set the colors 
   circles[currentCircle].color = focused;
-  circles[previousCircle].color = white;
+  circles[previousPreviousCircle].color = white;
+  circles[previousCircle].color = before;
+  circles[nextCircle].color = after;
 
   // Increment the index
   currentCircle++;
