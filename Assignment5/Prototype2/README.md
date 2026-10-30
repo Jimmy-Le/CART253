@@ -1,21 +1,20 @@
-# Carnival
+# Fall
 
 Jimmy Le
 
-[View this project online](https://jimmy-le.github.io/CART253/Assignment4/Prototype2/index.html)
+[View this project online](https://jimmy-le.github.io/CART253/Assignment5/Prototype2/index.html)
 
 ## Description
 
-This prototype shows a game of pong where the player can control the left paddle.
+This prototype shows a tree losing its leaves after clicking.
 
-![Carnival](./assets/images/image.png)
+![Tree](./assets/images/image.png)
 
 ## Attribution
 
 This bit should attribute any code, assets or other elements used taken from other sources. For example:
 
 > - This project uses [p5.js](https://p5js.org).
-> - The barking sound effect is "single dog bark 1" by crazymonke9 from freesound.org: https://freesound.org/people/crazymonke9/sounds/418107/
 
 ## License
 
