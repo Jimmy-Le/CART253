@@ -1,14 +1,14 @@
-# Canvas
+# Pause/Play
 
 Jimmy Le
 
-[View this project online](https://jimmy-le.github.io/CART253/Assignment4/Prototype3/index.html)
+[View this project online](https://jimmy-le.github.io/CART253/Assignment5/Prototype3/index.html)
 
 ## Description
 
-This prototype simulates someone who is very sensitive to mouse movements. Clicking or moving the mouse will wake them up!
+This prototype simulates a buffering video. Click to pause or play 
 
-![Insomnia](./assets/images/image.png)
+![Pause/Play](./assets/images/image.png)
 
 ## Attribution
 > - This project uses [p5.js](https://p5js.org).
