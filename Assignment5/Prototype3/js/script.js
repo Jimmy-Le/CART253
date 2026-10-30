@@ -36,12 +36,15 @@ let currentCircle = 0;
 let white = "#FFFFFF"
 let focused = "#4a53ba"
 
+let playState = true;
+
 
 /**
  * Create the canvas
  */
 function setup() {
   createCanvas(maxX, maxY);
+  rectMode(CENTER);
   background(0,0,0);
 }
 
@@ -50,6 +53,16 @@ function setup() {
  */
 function draw() {
   background(0);
+
+  if(playState){
+    drawPlayButton();
+  }
+  else
+  {
+    drawPauseButton(-50);
+    drawPauseButton(50);
+  }
+
   
 
 }
@@ -59,6 +72,16 @@ function drawPauseButton(xOffset)
   push();
   rect(pauseBar.x + xOffset, pauseBar.y, pauseBar.w, pauseBar.h);
   pop();
+}
+
+function drawPlayButton()
+{
+  push();
+
+  triangle(playButton.x1, playButton.y1, playButton.x2, playButton.y2, playButton.x3, playButton.y3);
+
+  pop();
+
 }
 
 
