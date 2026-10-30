@@ -77,8 +77,8 @@ function draw() {
   for(const circle of circles)
   {
     push()
+    fill(circle.color);
     ellipse(circle.x, circle.y, circle.size);
-
     pop();
   }
   
@@ -122,7 +122,16 @@ function createCircle(newX,newY)
 }
 
 
+function cycle()
+{
+  currentCircle = currentCircle % circles.length;
+  let previousCircle = (currentCircle - 1) % circles.length;
   
+  circles[currentCircle].color = focused;
+  circles[previousCircle].color = white;
+
+  currentCircle++;
+}
 
 
 
