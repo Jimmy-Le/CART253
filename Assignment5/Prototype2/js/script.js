@@ -33,6 +33,11 @@ function setup() {
   createBranches(maxX/2, maxY/2, maxX/2 - 200, maxY/2 - 125);
   createBranches(maxX/2, maxY/2, maxX/2 + 200, maxY/2 - 50);
   createBranches(maxX/2 + 100, maxY/2 -30, maxX/2 + 150, maxY/2 - 100)
+
+  createLeaf(maxX/2 - 100, maxY/2 - 150);
+  createLeaf(maxX/2 - 225, maxY/2 - 125);
+  createLeaf(maxX/2 + 225, maxY/2 - 50);
+  createLeaf(maxX/2 + 170, maxY/2 - 100);
 }
 
 /**
@@ -53,6 +58,14 @@ function draw() {
     pop()
   }
 
+    for(const leaf of leaves)
+  {
+    push()
+    fill(leaf.color);
+    ellipse(leaf.x, leaf.y, leaf.w, leaf.h);
+    pop()
+  }
+
 }
 
 
@@ -61,9 +74,9 @@ function createLeaf(newX, newY)
   let newLeaf = {
     x : newX,
     y : newY,
-    h : 30,
-    w: 40,
-    color: "#51ff00"
+    h : 50,
+    w: 100,
+    color: "#bdff9e"
   }
   leaves.push(newLeaf);
 }
