@@ -60,12 +60,17 @@ function draw() {
     pop()
   }
 
-    for(const leaf of leaves)
+  for(const leaf of leaves)
   {
     push()
     fill(leaf.color);
     ellipse(leaf.x, leaf.y, leaf.w, leaf.h);
     pop()
+
+    if(leaf.isFalling)
+    {
+      fall(leaf);
+    }
   }
 
 }
@@ -78,7 +83,10 @@ function createLeaf(newX, newY)
     y : newY,
     h : 50,
     w: 100,
-    color: "#bdff9e"
+    originX: newX,
+    originY: newY,
+    color: "#bdff9e",
+    isFalling: false
   }
   leaves.push(newLeaf);
 }
@@ -99,13 +107,28 @@ function createBranches(newX1, newY1, newX2, newY2)
 
 function fall(leaf)
 {
-  leaf.x -= 1;
-  leaf.y -= 1;
-
-  leaf.y = constrain(leaf.y, 0, maxX - leaf.h/2 )
+  leaf.x -= random(-6,6);
+  leaf.y -= random(-3, -2);
 }
 
+function mousePressed()
+{
+  currentLeaf = currentLeaf % leaves.length;
+  let leaf = leaves[currentLeaf];
 
+  if(leaf.isFalling)
+  {
+    leaf.x = leaf.originX;
+    leaf.y = leaf.originY;
+    leaf.isFalling = false;
+  }
+  else
+  {
+    leaves[currentLeaf].isFalling = true;
+  }
+
+  currentLeaf++;
+}
 
 
 
