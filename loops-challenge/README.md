@@ -1,12 +1,12 @@
-# Bouncy Ball
+# Lines
 
 Jimmy Le
 
-[View this project online](https://jimmy-le.github.io/CART253/events-challenge/index.html)
+[View this project online](https://jimmy-le.github.io/CART253/loops-challenge/index.html)
 
 ## Description
 
-This challenge experiments with functions and the reusability of it.
+This challenge experiments with loops.
 
 ## Attribution
 

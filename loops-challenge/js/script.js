@@ -6,6 +6,7 @@
  */
 
 "use strict";
+let newColor = undefined;
 
 /**
  * Creates the canvas
@@ -20,37 +21,27 @@ function setup() {
  */
 function draw() {
     background("pink");
-    
-    stroke(0);
-    line(0, 0, 0, height);
-    
-    stroke(25);
-    line(50, 0, 50, height);
-    
-    stroke(50);
-    line(100, 0, 100, height);
-    
-    stroke(75);
-    line(150, 0, 150, height);
-    
-    stroke(100);
-    line(200, 0, 200, height);
-    
-    stroke(125);
-    line(250, 0, 250, height);
-    
-    stroke(150);
-    line(300, 0, 300, height);
-    
-    stroke(175);
-    line(350, 0, 350, height);
-    
-    stroke(200);
-    line(400, 0, 400, height);
-    
-    stroke(225);
-    line(450, 0, 450, height);
-    
-    stroke(250);
-    line(500, 0, 500, height);
+
+    let gradientIndex = 0;
+    for(let i = 0; i < height; i++){
+      newColor = lerpColor(color(255, 255, 0), color(0, 255,255), gradientIndex);
+      stroke(newColor);
+      line(0, i, width, i);
+      gradientIndex += sin(i/100)/100;
+    }    
+
+    let increment = 0;
+
+    while(increment < width){
+      stroke(increment/2);
+      line(increment, 0, increment, height);
+      increment += 50;
+    }
+
+    for(let i = 0; i < height; i += 50){
+      strokeWeight(i/50);
+      stroke(255,0,255)
+      line(0, 0, width, i);
+    }
+
 }
