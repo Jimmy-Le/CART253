@@ -121,7 +121,11 @@ function draw() {
 
   }
 
-  drawLineAttack();
+  if(!isGameOver)
+  {
+    drawLineAttack();
+  }
+  
 
 
 
@@ -184,12 +188,21 @@ function movePlayer(){
 
 
 function takeDamage(damage = 1){
+
   if(!player.isInvincible){
     lives -= damage;
+
+    if(lives <= 0)
+    {
+      isGameOver = true;
+      return;
+    }
+
+
     player.isInvincible = true;
     currentSprite = heartImages[1];
 
-    console.log(lives);
+
     setTimeout(() => {
       player.isInvincible = false;
       currentSprite = heartImages[0];
