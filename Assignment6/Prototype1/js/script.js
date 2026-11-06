@@ -42,6 +42,13 @@ let gameStateText = {
   lose: "You Lose!"
 }
 
+let player = {
+  x: maxX/2,
+  y: maxY/2,
+  size: 32,
+  speed: 5,
+  isInvincible: false,
+}
 
 /**
  * Create the canvas
@@ -69,6 +76,7 @@ function draw() {
   background(0);
   drawHeader();
 
+  image(heartImages[0], player.x, player.y, player.size, player.size);
 
 
 
@@ -83,9 +91,9 @@ function drawHeader(){
   pop();
 
   // Spawn Hearts based on the amount of lives left
-  let increment = 50;                                     // Increment the amount of space between each heart
+  let increment = 64;                                     // Increment the amount of space between each heart
   for(let i = 0; i < lives; i++){
-    image(heartImages[0], 50 + i * increment, 50);
+    image(heartImages[0], 50 + i * increment, 50, 64,64);
   }
 
   // Timer Text
