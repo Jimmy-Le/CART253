@@ -11,6 +11,7 @@ let maxX = 1000;
 let maxY = 1000;
 
 let heartImages = [];                   // Array of the different heart images
+let currentSprite = undefined;
 let lives = 3;                          // Lives left
 let timer = 120;                        // 120 seconds
 let isGameOver = false;                 // The current Game State
@@ -67,6 +68,8 @@ async function setup() {
   let heartPic2 = await loadImage("assets/images/Heart_1.png");
   heartImages.push(heartPic);
   heartImages.push(heartPic2);
+
+  currentSprite = heartImages[0];
   
 }
 
@@ -77,10 +80,13 @@ function draw() {
   background(0);
   drawHeader();
 
-  image(heartImages[0], player.x, player.y, player.size, player.size);
+
+  ellipse(300, 300, 50, 50);
 
 
 
+  // Draw the player
+  image(currentSprite, player.x, player.y, player.size, player.size);
   movePlayer();
 
 }
@@ -139,6 +145,39 @@ function movePlayer(){
   player.y = constrain(player.y, 0 + player.size/2 + header.height, maxY - player.size/2);
 }
 
+
+function takeDamage(damage = 1){
+  if(!player.isInvincible){
+    lives -= damage;
+    player.isInvincible = true;
+    currentSprite = heartImages[1];
+
+    setTimeout(() => {
+      player.isInvincible = false;
+      currentSprite = heartImages[0];
+    }, 1000);
+  }
+}
+
+
+function checkCollision(object)
+{
+  let distance = dist(player.x, player.y, object.x, object.y);
+
+  if(distance < player.size/2 + object.size/2){
+    return true;
+  }
+  return false;
+}
+
+
+function triggerAttackCollision(listOfAttacks){
+  for(const attack of listOfAttacks){
+    if(checkCollision(attack)){
+      takeDamage();
+    }
+  }
+}
 
 
 
