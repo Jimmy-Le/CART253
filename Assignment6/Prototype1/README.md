@@ -15,6 +15,7 @@ This project allows the users to stack rocks on top of each other and make them 
 This bit should attribute any code, assets or other elements used taken from other sources. For example:
 
 > - This project uses [p5.js](https://p5js.org).
+> - This project uses the Silkscreen Font from google fonts
 
 ## License
 

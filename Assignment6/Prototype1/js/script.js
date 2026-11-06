@@ -7,19 +7,28 @@
  */
 
 // Canvas Size
-let maxX = 500;
-let maxY = 500;
+let maxX = 1000;
+let maxY = 1000;
 
-let heartImages = [];
-let lives = 3;
+let heartImages = [];                   // Array of the different heart images
+let lives = 3;                          // Lives left
+let timer = 120;                        // 120 seconds
 
-
+// UI Header
 let header = {
   x: maxX/2,
   y: 50,
   width: maxX,
   height: 100,
-  color: "#686464"
+  color: "#311111"
+}
+
+// Timer Text Box
+let timerText = {
+  x: maxX - 300,
+  y: 64,
+  size: 32,
+  color: "#ffffff"
 }
 
 
@@ -31,6 +40,7 @@ async function setup() {
 
   rectMode(CENTER);
   imageMode(CENTER);
+  textFont("Silkscreen");
 
 
   let heartPic = await loadImage("assets/images/Heart_0.png");
@@ -58,7 +68,13 @@ function draw() {
     image(heartImages[0], 40 + i * increment, 50);
   }
 
-  
+  // Timer Text
+  push();
+  fill(timerText.color);
+  textSize(timerText.size);
+  text("Time Left: " + timer, timerText.x, timerText.y);
+  pop();
+
 }
 
 
