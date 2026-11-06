@@ -13,6 +13,8 @@ let maxY = 1000;
 let heartImages = [];                   // Array of the different heart images
 let lives = 3;                          // Lives left
 let timer = 120;                        // 120 seconds
+let isGameOver = false;                 // The current Game State
+let isWin = false;                      // Did the player win or lose
 
 // UI Header
 let header = {
@@ -25,10 +27,19 @@ let header = {
 
 // Timer Text Box
 let timerText = {
-  x: maxX - 300,
+  x: maxX/2,
   y: 64,
   size: 32,
   color: "#ffffff"
+}
+
+let gameStateText = {
+  x: maxX/2,
+  y: maxY/2,
+  size: 50,
+  color: "#ffffff",
+  win: "You Win!",
+  lose: "You Lose!"
 }
 
 
@@ -40,6 +51,7 @@ async function setup() {
 
   rectMode(CENTER);
   imageMode(CENTER);
+  textAlign(CENTER);
   textFont("Silkscreen");
 
 
@@ -55,7 +67,15 @@ async function setup() {
  */
 function draw() {
   background(0);
+  drawHeader();
 
+
+
+
+}
+
+
+function drawHeader(){
   // Header
   push();
   fill(header.color);
@@ -65,7 +85,7 @@ function draw() {
   // Spawn Hearts based on the amount of lives left
   let increment = 50;                                     // Increment the amount of space between each heart
   for(let i = 0; i < lives; i++){
-    image(heartImages[0], 40 + i * increment, 50);
+    image(heartImages[0], 50 + i * increment, 50);
   }
 
   // Timer Text
@@ -74,6 +94,18 @@ function draw() {
   textSize(timerText.size);
   text("Time Left: " + timer, timerText.x, timerText.y);
   pop();
+
+  // Game State Text
+  if(isGameOver){
+    push();
+    fill(gameStateText.color);
+    textSize(gameStateText.size);
+    text(isWin ? gameStateText.win: gameStateText.lose, gameStateText.x, gameStateText.y);        // If the player won, display "You Win!" otherwise display "You Lose!"
+    pop();
+    
+  }
+
+
 
 }
 
