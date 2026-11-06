@@ -190,7 +190,10 @@ function movePlayer(){
 function takeDamage(damage = 1){
 
   if(!player.isInvincible){
+    player.isInvincible = true;
     lives -= damage;
+    
+    currentSprite = heartImages[1];
 
     if(lives <= 0)
     {
@@ -198,15 +201,10 @@ function takeDamage(damage = 1){
       return;
     }
 
-
-    player.isInvincible = true;
-    currentSprite = heartImages[1];
-
-
     setTimeout(() => {
       player.isInvincible = false;
       currentSprite = heartImages[0];
-    }, 1000);
+    }, 1500);
   }
 }
 
@@ -260,7 +258,7 @@ function drawLineAttack(){
 
     let newX = lineAttack.target.x + random(-50,50);
     lineAttack.x = newX;
-    if(timeElapsed < 1000)
+    if(timeElapsed < 750)
     {
       push();
       fill(lineAttack.color);
