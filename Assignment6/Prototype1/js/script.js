@@ -11,11 +11,21 @@ let maxX = 1000;
 let maxY = 1000;
 
 let heartImages = [];                   // Array of the different heart images
-let currentSprite = undefined;
+let currentSprite = undefined;          // Current Player Sprite (Red Heart Image)
 let lives = 3;                          // Lives left
 let timer = 120;                        // 120 seconds
 let isGameOver = false;                 // The current Game State
 let isWin = false;                      // Did the player win or lose
+
+// This will store the snapshotted coordinates of the player right before an attack
+let snapShot =
+{
+  x: maxX/2,
+  y: maxY/2,
+}
+
+// Attack Patterns
+let lineAttacks = [];
 
 // UI Header
 let header = {
@@ -58,18 +68,24 @@ let player = {
 async function setup() {
   createCanvas(maxX, maxY);
 
+  // Set up the drawing modes 
   rectMode(CENTER);
   imageMode(CENTER);
   textAlign(CENTER);
+
+  // Set the font
   textFont("Silkscreen");
 
 
+  // Setup the sprites
   let heartPic = await loadImage("assets/images/Heart_0.png");
   let heartPic2 = await loadImage("assets/images/Heart_1.png");
   heartImages.push(heartPic);
   heartImages.push(heartPic2);
-
   currentSprite = heartImages[0];
+
+  // Setup the attack patterns
+  setupAttacks();
   
 }
 
@@ -81,13 +97,11 @@ function draw() {
   drawHeader();
 
 
-  ellipse(300, 300, 50, 50);
-
-
-
   // Draw the player
   image(currentSprite, player.x, player.y, player.size, player.size);
   movePlayer();
+
+  // triggerLineAttack();
 
 }
 
@@ -163,7 +177,7 @@ function takeDamage(damage = 1){
 function checkCollision(object)
 {
   let distance = dist(player.x, player.y, object.x, object.y);
-
+  console.log(distance);
   if(distance < player.size/2 + object.size/2){
     return true;
   }
@@ -178,6 +192,44 @@ function triggerAttackCollision(listOfAttacks){
     }
   }
 }
+
+
+
+function setupAttacks(){
+
+  // Setup the line attack pattern
+  let lineAmount = 10;
+
+  // Create vertical Line Attacks
+  for(let i = 0; i < lineAmount; i++){
+    let lineAttack = {
+      x: maxX/2,
+      y: maxY/2,
+      width: 10,
+      height: maxY,
+      color: "#ff0000",
+      attackColor: "#FFFFFF"
+    }
+    lineAttacks.push(lineAttack);
+  }
+}
+
+function triggerLineAttack(){
+  for(const lineAttack of lineAttacks){
+    push();
+    fill(lineAttack.color);
+    rect(snapShot.x + random(-50, 50), lineAttack.y, lineAttack.width, lineAttack.height);
+    pop();
+
+    setTimeout(() => {
+      lineAttack.color = lineAttack.attackColor;
+      lineAttack.width = 30;
+      triggerAttackCollision(lineAttacks);
+    }, 1500);
+  }
+}
+
+
 
 
 
