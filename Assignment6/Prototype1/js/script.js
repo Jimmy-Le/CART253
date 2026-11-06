@@ -18,12 +18,15 @@ let snapShot = undefined;                    // Snapshot of the player position 
 let timer = 120;                        // 120 seconds
 let startTime;
 let timeLimit = 120;                    // 120 seconds
+let lastTriggerSecond = -1;
 
 let isGameOver = false;                 // The current Game State
 let isWin = false;                      // Did the player win or lose
 
 // Attack Patterns
 let lineAttacks = [];
+
+
 
 // UI Header
 let header = {
@@ -110,12 +113,14 @@ function draw() {
 
 
   
-  if(!isGameOver && timer % 2 === 0 && timer !== 0){
+  if(!isGameOver && timer % 2 === 0 && timer !== 0 && lastTriggerSecond !== timer ){
+    initiateLineAttack();
+    lastTriggerSecond = timer;
 
-    snapShot = createVector(player.pos.x, player.pos.y);
-    triggerLineAttack(snapShot);
   }
-  // triggerLineAttack();
+
+  drawLineAttack();
+
 
 
   drawHeader();
@@ -213,46 +218,81 @@ function setupAttacks(){
   // Setup the line attack pattern
   let lineAmount = 10;
 
-  // Create vertical Line Attacks
-  for(let i = 0; i < lineAmount; i++){
-    let lineAttack = {
-      x: maxX/2,
+  for(let i = 0; i < lineAmount; i++)
+  {
+    let newLine = {
+      x: -100,
       y: maxY/2,
+      color: "#FF0000",
       width: 10,
       height: maxY,
-      color: "#ff0000",
-      attackColor: "#FFFFFF"
+      attackOver: false,
+      attackColor: "#FFFFFF",
+      target: player.pos.copy(),
+      spawnTime: millis()
     }
-    lineAttacks.push(lineAttack);
+
+    lineAttacks.push(newLine);
+
   }
+
+
 }
 
-function triggerLineAttack(currentSnapShot){
-
-
+function drawLineAttack(){
 
   for(const lineAttack of lineAttacks){
-    push();
-    fill(lineAttack.color);
-    rect(currentSnapShot.x + random(-50, 50), lineAttack.y, lineAttack.width, lineAttack.height);
-    pop();
+    
+    let timeElapsed = millis() - lineAttack.spawnTime; 
 
-    setTimeout(() => {
-      push()
+    if(timeElapsed < 1000)
+    {
+      push();
+      fill(lineAttack.color);
+      rect(lineAttack.target.x + random(-50, 50), lineAttack.y, lineAttack.width, lineAttack.height);
+      pop();
+    }
+    else {
       lineAttack.color = lineAttack.attackColor;
       lineAttack.width = 30;
       triggerAttackCollision(lineAttack);
-      // resetLineAttack(lineAttack);
-      pop();
-    }, 1500);
+
+    }
   }
 }
 
-function resetLineAttack(attack){
-    attack.color = "#ff0000";
-    attack.width = 10;
+function initiateLineAttack(){
+    
+  // Snapshot the player's position before spawning
+  let currentSnapShot = player.pos.copy(); 
+
+  for(const lineAttack of lineAttacks) {
+    // Lock the attack to the player's static X coordinate at this exact moment
+    lineAttack.target = currentSnapShot;
+
+    // Reset properties to warning phase
+    lineAttack.color = "#00ff08";             // Initial red color
+    lineAttack.width = 10;                      // Thin warning line
+    lineAttack.spawnTime = millis();            // Record when this attack started
+  }
+
 }
 
+/***
+ * This function will return true if all attack by the line attacks are finished
+ */
+function allAttackFinished(){
+  for(const lineAttack of lineAttacks)
+  {
+    if(!lineAttack.attackOver)
+    {
+      return false
+    }
+  }
+
+  return true;
+  
+}
 
 
 
