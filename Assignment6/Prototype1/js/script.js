@@ -25,6 +25,7 @@ let isWin = false;                      // Did the player win or lose
 
 // Attack Patterns
 let lineAttacks = [];
+let attackTolerance = 50;
 
 
 
@@ -105,6 +106,7 @@ function draw() {
     timer = Math.floor(timeLimit - (millis() - startTime) / 1000);
   } else {
     isGameOver = true;
+    isWin = lives > 0;
   }
 
   // Draw the player
@@ -187,6 +189,7 @@ function takeDamage(damage = 1){
     player.isInvincible = true;
     currentSprite = heartImages[1];
 
+    console.log(lives);
     setTimeout(() => {
       player.isInvincible = false;
       currentSprite = heartImages[0];
@@ -195,23 +198,20 @@ function takeDamage(damage = 1){
 }
 
 
-function checkCollision(object)
-{
-  let distance = dist(player.pos.x, player.pos.y, object.x, object.y);
-  if(distance < player.size/2 + object.size/2){
-    return true;
-  }
-  return false;
+function checkCollision(object) {
+  const nearestX = constrain( player.pos.x, object.x - object.width / 2, object.x + object.width / 2);
+  const nearestY = constrain(player.pos.y, object.y - object.height / 2, object.y + object.height / 2);
+
+  return dist(player.pos.x, player.pos.y, nearestX, nearestY) <= player.size / 2;
 }
 
 
 function triggerAttackCollision(attack){
   if(checkCollision(attack)){
+    console.log("hit")
     takeDamage();
   }
 }
-
-
 
 function setupAttacks(){
 
@@ -224,7 +224,7 @@ function setupAttacks(){
       x: -100,
       y: maxY/2,
       color: "#FF0000",
-      width: 10,
+      width: 5,
       height: maxY,
       attackOver: false,
       attackColor: "#FFFFFF",
@@ -245,16 +245,24 @@ function drawLineAttack(){
     
     let timeElapsed = millis() - lineAttack.spawnTime; 
 
+    let newX = lineAttack.target.x + random(-50,50);
+    lineAttack.x = newX;
     if(timeElapsed < 1000)
     {
       push();
       fill(lineAttack.color);
-      rect(lineAttack.target.x + random(-50, 50), lineAttack.y, lineAttack.width, lineAttack.height);
+      rect(lineAttack.x, lineAttack.y, lineAttack.width, lineAttack.height);
       pop();
     }
     else {
+      push()
       lineAttack.color = lineAttack.attackColor;
       lineAttack.width = 30;
+      fill(lineAttack.color);
+      rect(lineAttack.x, lineAttack.y, lineAttack.width, lineAttack.height);
+
+      pop()
+
       triggerAttackCollision(lineAttack);
 
     }
@@ -271,28 +279,13 @@ function initiateLineAttack(){
     lineAttack.target = currentSnapShot;
 
     // Reset properties to warning phase
-    lineAttack.color = "#00ff08";             // Initial red color
-    lineAttack.width = 10;                      // Thin warning line
+    lineAttack.color = "#FF0000";             // Initial red color
+    lineAttack.width = 5;                      // Thin warning line
     lineAttack.spawnTime = millis();            // Record when this attack started
   }
 
 }
 
-/***
- * This function will return true if all attack by the line attacks are finished
- */
-function allAttackFinished(){
-  for(const lineAttack of lineAttacks)
-  {
-    if(!lineAttack.attackOver)
-    {
-      return false
-    }
-  }
-
-  return true;
-  
-}
 
 
 
