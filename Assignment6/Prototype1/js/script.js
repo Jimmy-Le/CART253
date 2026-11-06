@@ -22,7 +22,8 @@ let header = {
   y: 50,
   width: maxX,
   height: 100,
-  color: "#311111"
+  color: "#000000",
+  borderColor: "#ffffff"
 }
 
 // Timer Text Box
@@ -80,6 +81,8 @@ function draw() {
 
 
 
+  movePlayer();
+
 }
 
 
@@ -87,13 +90,14 @@ function drawHeader(){
   // Header
   push();
   fill(header.color);
+  stroke(header.borderColor);
   rect(header.x, header.y, header.width, header.height);
   pop();
 
   // Spawn Hearts based on the amount of lives left
-  let increment = 64;                                     // Increment the amount of space between each heart
+  let increment = 50;                                     // Increment the amount of space between each heart
   for(let i = 0; i < lives; i++){
-    image(heartImages[0], 50 + i * increment, 50, 64,64);
+    image(heartImages[0], 50 + i * increment, 50, 50,50);
   }
 
   // Timer Text
@@ -112,13 +116,28 @@ function drawHeader(){
     pop();
     
   }
-
-
-
 }
 
 
+function movePlayer(){
 
+  if(keyIsDown(UP_ARROW) || keyIsDown('w') || keyIsDown('W')){                        // Include capital letters in case caps lock is on
+    player.y -= player.speed;       
+  } 
+  else if(keyIsDown(DOWN_ARROW) || keyIsDown('s') || keyIsDown('S')){
+    player.y += player.speed;
+  }
+
+  if(keyIsDown(LEFT_ARROW) || keyIsDown('a') || keyIsDown('A')){
+    player.x -= player.speed;
+  }
+  else if(keyIsDown(RIGHT_ARROW) || keyIsDown('d') || keyIsDown('D')){
+    player.x += player.speed ;
+  }
+
+  player.x = constrain(player.x, 0 + player.size/2, maxX - player.size/2);        // Constrain the player to the canvas
+  player.y = constrain(player.y, 0 + player.size/2 + header.height, maxY - player.size/2);
+}
 
 
 
