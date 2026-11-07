@@ -474,6 +474,18 @@ function drawHeader(){
 }
 
 
+/***
+ * This function is one of the event handlers that is called when the mouse is pressed.
+ * If the mouse is pressed and the mouse is over the reset or toggle button, do the appropriate action
+ */
+function mousePressed(){
+  // Reset the canvas by turning the background black
+  if(mouseX >= restart.x - restart.width/2 && mouseX <= restart.x + restart.width/2 && mouseY >= restart.y - restart.height/2 && mouseY < restart.y + restart.height/2 && isGameOver){
+    background(0,0,0);
+    console.log("restarting");
+
+  } 
+}
 
 
 
