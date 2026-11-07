@@ -1,6 +1,44 @@
 # Reflective Journal
 ---
-## (New) 30 October 2026
+## (NEW) 6 November 2026
+
+For this assignment, you told me it was okay if I did 1 really good one. Hopefully this one is good enough~
+
+So this prototype is inspired by Undertale, where the objective during fights is to avoid projects and attacks.
+
+I first started by sketching out my idea. 
+Unfortunately, I only had time to implement 2 out of the 3 attack patterns.
+
+![sketch](./Assignment6/Prototype1/assets/images/sketch.png)
+This attack pattern would make a lazer beam at the position the the player is in. There would be a small timeframe for the player to avoid it, then it would go into attack mode.
+
+When I was programming it, I accidentally made it look like it was charging up. It was supposed to be multiple columns around the player, but making them all really close gave the impression of a high energy beam. So I kept it in :smile:
+
+![sketch2](./Assignment6/Prototype1/assets/images/sketch2.png)
+This attack pattern would have balls fly towards the player and continue in the same direction.
+
+![sketch3](./Assignment6/Prototype1/assets/images/sketch3.png)
+This attack pattern would have made falling arrows from the sky like rain. I technically have time to implement this as of writing this, buuuuuuut I am cutting it close to the deadline.
+
+I originally wanted to make it cycle through the different attack patterns, but I thought it would be more interesting if both happened at the same time to increase the difficulty.
+
+Some issues that i came across is properly snapshotting the players position for the attacks to stick to. Otherwise it would keep following the player.
+According to google, I needed to use vectors instead of just x and y to be able to make a copy. That didn't work, what i needed to actually do was store the coordinates inside the objects when initialzing, then using that position instead of the players position.
+
+
+The other thing is that i had no idea how to get the ball to move towards a certain point and keep moving in that direction. Using just -1 or +1 for the x / y would make them move in straight lines / diagonals instead of a specific point, so my best friend copilot suggested to use the Vector built in functions to find the difference between the 2 coordinates and then normalize the value.
+
+![Overtale](./Assignment6/Prototype1/assets/images/image.png)
+
+
+*ps: I lowkey should've asked if I could do 1 big prototype from the beginning.
+It is so much more fun to just keep adding things in instead of splitting my focus on 3 different ones :skull:
+
+But oh well
+
+
+---
+## 30 October 2026
 
 I have read the feedback from the other assignments, and for this assignment I tried to keep that in mind while working on it.
 - There should be a a good amount of commit messages
