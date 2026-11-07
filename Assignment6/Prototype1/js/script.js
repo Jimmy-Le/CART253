@@ -22,7 +22,7 @@ let timeLimit = 120;                    // 120 seconds, the inital time to survi
 let lastTriggerSecond = -1;             // The time to keep track of so that the functions don't trigger multiple time within a single second
 
 // Game States
-let isGameOver = false;                 // The current Game State
+let isGameOver = true;                 // The current Game State
 let isWin = false;                      // Did the player win or lose
 
 // Attack Patterns
@@ -68,6 +68,17 @@ let player = {
   size: 32,
   speed: 5,
   isInvincible: false,              // Invincibility State
+}
+
+// Restart Button
+let restart = {
+  x: maxX / 2,
+  y: maxY / 2 + 100,
+  size: 32,
+  height: 100,
+  width: 300,
+  text: "Play Again",
+  color: "#FFFFFF"
 }
 
 /**
@@ -309,6 +320,9 @@ function drawLineAttack(){
 
 
 // ----------------------------------------- Ball Attacks ------------------------------
+/***
+ * This function sets up the amount of balls on the screen and intializes their original positions and attributes
+ */
 function setupBalls()
 {
   // Setup the ball attack pattern
@@ -324,19 +338,24 @@ function setupBalls()
       width: 50,
       height: 50,
       target: player.pos.copy(),
-      velocityX: 0,
-      velocityY: 0,
+      velocityX: 0,                         // The x direction it needs to go towards the target
+      velocityY: 0,                         // The y direction it needs to go towards the target
       speed: random(3, 6)
     }
 
     ballAttacks.push(newBall);              // Push each new ball into the ballAttacks Array
   }
 
+  // Itinitalizes the velocity of the ball with the snapshotted player position
   for(const ballAttack of ballAttacks){
     initiateBallAttack(ballAttack);
   }
 }
 
+/***
+ * This function calculates the velocity of the ball needed to move towards the players snapshotted position
+ * It also handles the respawn of the ball
+ */
 function initiateBallAttack(ballAttack){
   let currentSnapShot = player.pos.copy();                          // Snapshot the player's position before spawning
 
@@ -344,36 +363,36 @@ function initiateBallAttack(ballAttack){
   ballAttack.x = random(ballAttack.width - 500, maxX - ballAttack.width + 500);
   ballAttack.y = random(ballAttack.height + header.height - 500, maxY - ballAttack.height + 500);
 
-  let direction = p5.Vector.sub(ballAttack.target, createVector(ballAttack.x, ballAttack.y)).normalize(); // This apparently will find the x / y direction towards the player
+  let direction = p5.Vector.sub(ballAttack.target, createVector(ballAttack.x, ballAttack.y)).normalize();   // This apparently will find the x / y direction towards the player
   ballAttack.velocityX = direction.x;
   ballAttack.velocityY = direction.y;
-
-
-
-
 }
 
 /***
- * This function draws the lines from the lineAttacks on screen
- * After an initial line has been draw, after a certain period of time from its creation, it will activate, becoming bigger and deal damage to players on contact
+ * This function draws the balls from the ballAttacks on screen
+ * once a ball goes off screen, it will reinitialize itself
  */
 function drawBallAttack(){
 
   // Draw each line
   for(const ballAttack of ballAttacks){
     
+    // If the ball goes out of bounds, reinitialize it
     if(ballAttack.x < -200 || ballAttack.x > maxX + 200 || ballAttack.y < -200 + header.height || ballAttack.y > maxY + 200){
       initiateBallAttack(ballAttack)
     }
 
+    // Move the ball
     ballAttack.x += ballAttack.velocityX * ballAttack.speed;
     ballAttack.y += ballAttack.velocityY * ballAttack.speed;
 
+    // Draw the ball
     push();
     fill(ballAttack.color);
     ellipse(ballAttack.x, ballAttack.y, ballAttack.width, ballAttack.height);
     pop();
 
+    // Check for collisions
     triggerAttackCollision(ballAttack);
 
   }
@@ -437,6 +456,19 @@ function drawHeader(){
     textSize(gameStateText.size);
     text(isWin ? gameStateText.win: gameStateText.lose, gameStateText.x, gameStateText.y);        // If the player won, display "You Win!" otherwise display "You Lose!"
     pop();
+
+    push();
+    stroke(restart.color);
+    noFill();
+    rect(restart.x, restart.y, restart.width, restart.height);
+    pop();
+
+    push();
+    textSize(restart.size);
+    fill(restart.color);
+    text(restart.text, restart.x, restart.y);
+    pop();
+
     
   }
 }
