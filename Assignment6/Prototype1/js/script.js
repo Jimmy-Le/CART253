@@ -16,13 +16,13 @@ let currentSprite = undefined;          // Current Player Sprite (Red Heart Imag
 let lives = 3;                          // Lives left
 
 // Time
-let timer = 120;                        // Time being kept track of
+let timer = 60;                        // Time being kept track of
 let startTime;                          // Initial time, used to subtract from the timer
-let timeLimit = 120;                    // 120 seconds, the inital time to survive
+let timeLimit = 60;                    // 120 seconds, the inital time to survive
 let lastTriggerSecond = -1;             // The time to keep track of so that the functions don't trigger multiple time within a single second
 
 // Game States
-let isGameOver = true;                 // The current Game State
+let isGameOver = false;                 // The current Game State
 let isWin = false;                      // Did the player win or lose
 
 // Attack Patterns
@@ -326,7 +326,7 @@ function drawLineAttack(){
 function setupBalls()
 {
   // Setup the ball attack pattern
-  let ballAmount = 3;
+  let ballAmount = 5;
 
   // Create the amount of balls needed and set up its basic attributes
   for(let i = 0; i < ballAmount; i++)
@@ -451,18 +451,22 @@ function drawHeader(){
 
   // Game State Text
   if(isGameOver){
+    // Game Over Text
     push();
     fill(gameStateText.color);
     textSize(gameStateText.size);
     text(isWin ? gameStateText.win: gameStateText.lose, gameStateText.x, gameStateText.y);        // If the player won, display "You Win!" otherwise display "You Lose!"
     pop();
 
+
+    // Restart Button Box
     push();
     stroke(restart.color);
     noFill();
     rect(restart.x, restart.y, restart.width, restart.height);
     pop();
 
+    // Restart Button Text
     push();
     textSize(restart.size);
     fill(restart.color);
@@ -481,12 +485,28 @@ function drawHeader(){
 function mousePressed(){
   // Reset the canvas by turning the background black
   if(mouseX >= restart.x - restart.width/2 && mouseX <= restart.x + restart.width/2 && mouseY >= restart.y - restart.height/2 && mouseY < restart.y + restart.height/2 && isGameOver){
-    background(0,0,0);
-    console.log("restarting");
+    restartGame();
 
   } 
 }
 
+/***
+ * This function will restart the game 
+ */
+function restartGame(){
+  // Reset Time
+  timer = timeLimit;
+  startTime = millis();
+  lastTriggerSecond = -1; 
+
+  // Reset Player stats
+  lives = 3;
+  player.isInvincible = false;
+  player.currentSprite = heartImages[0];
+
+  // Reset Game state
+  isGameOver = false;
+}
 
 
 
