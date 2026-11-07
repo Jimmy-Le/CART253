@@ -313,11 +313,14 @@ function initiateBallAttack(){
     ballAttack.x = random(ballAttack.width, maxX - ballAttack.width);
     ballAttack.y = random(ballAttack.height + header.height, maxY - ballAttack.height);
 
-    let direction = p5.Vector.sub(ballAttack.target, createVector(ballAttack.x, ballAttack.y).normalize());
+    let direction = p5.Vector.sub(ballAttack.target, createVector(ballAttack.x, ballAttack.y).normalize()); // This apparently will find the x / y direction towards the player
+    ballAttack.velocityX = direction.x;
+    ballAttack.velocityY = direction.y;
 
   }
-
 }
+
+
 
 // ----------------------------------------- Ball Attacks ------------------------------
 function setupBalls()
