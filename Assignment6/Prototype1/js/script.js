@@ -27,6 +27,7 @@ let isWin = false;                      // Did the player win or lose
 
 // Attack Patterns
 let lineAttacks = [];                   // Array of lines for the Line Attack
+let ballAttacks = [];                   // Array of balls for the ball attack
 
 //Line Attack Properties:
 let baseLineSize = 2;                   // the base size of a line indicator
@@ -98,7 +99,7 @@ async function setup() {
   player.pos = createVector(maxX/2, maxY/2);
 
   // Setup the attack patterns
-  setupAttacks();
+  setupLines();
 
   
 }
@@ -203,10 +204,9 @@ function takeDamage(damage = 1){
 // ---------------------------------- Line Attack --------------------------------
 
 /***
- * This function was originally made to setup the lines and attacks into their respective attack array.
- * But right now i only have the lines attack.
+ * This function setups the lines and attacks into their respective attack array.
  */
-function setupAttacks(){
+function setupLines(){
 
   // Setup the line attack pattern
   let lineAmount = 10;
@@ -220,7 +220,6 @@ function setupAttacks(){
       color: "#FF0000",
       width: baseLineSize,
       height: maxY,
-      attackOver: false,
       attackColor: "#FFFFFF",
       target: player.pos.copy(),
       spawnTime: millis(),
@@ -228,8 +227,8 @@ function setupAttacks(){
     }
 
     lineAttacks.push(newLine);              // Push each new line into the lineAttacks Array
-
   }
+
 }
 
 /***
@@ -303,6 +302,48 @@ function drawLineAttack(){
   }
 }
 
+
+function initiateBallAttack(){
+  let currentSnapShot = player.pos.copy();                          // Snapshot the player's position before spawning
+
+  // Update the attributes of all the lines in the line attack
+  for(const ballAttack of ballAttacks) {
+    // Lock the attack to the player's static X coordinate at this exact moment
+    ballAttack.target = currentSnapShot;
+    ballAttack.x = random(ballAttack.width, maxX - ballAttack.width);
+    ballAttack.y = random(ballAttack.height + header.height, maxY - ballAttack.height);
+
+    let direction = p5.Vector.sub(ballAttack.target, createVector(ballAttack.x, ballAttack.y).normalize());
+
+  }
+
+}
+
+// ----------------------------------------- Ball Attacks ------------------------------
+function setupBalls()
+{
+  // Setup the ball attack pattern
+  let ballAmount = 3;
+
+  // Create the amount of balls needed and set up its basic attributes
+  for(let i = 0; i < ballAmount; i++)
+  {
+    let newBall = {
+      x: -100,
+      y: maxY/2,
+      color: "#ffffff",
+      width: 100,
+      height: 100,
+      attackColor: "#FFFFFF",
+      target: player.pos.copy(),
+      velocityX: 0,
+      velocityY: 0,
+      ballSpeed: 4
+    }
+
+    ballAttacks.push(ballLine);              // Push each new ball into the ballAttacks Array
+  }
+}
 
 
 // ------------------------------ Helper Functions ----------------------------
