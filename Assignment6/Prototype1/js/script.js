@@ -100,6 +100,7 @@ async function setup() {
 
   // Setup the attack patterns
   setupLines();
+  setupBalls();
 
   
 }
@@ -136,7 +137,8 @@ function draw() {
   // If the game is not over, draw the lines from the line attack
   if(!isGameOver)
   {
-    drawLineAttack();
+    // drawLineAttack();
+    drawBallAttack();
   }
   
   // Draw out the UI
@@ -319,16 +321,19 @@ function setupBalls()
       x: -100,
       y: maxY/2,
       color: "#ffffff",
-      width: 100,
-      height: 100,
-      attackColor: "#FFFFFF",
+      width: 50,
+      height: 50,
       target: player.pos.copy(),
       velocityX: 0,
       velocityY: 0,
-      speed: random(2, 5)
+      speed: random(3, 6)
     }
 
-    ballAttacks.push(ballLine);              // Push each new ball into the ballAttacks Array
+    ballAttacks.push(newBall);              // Push each new ball into the ballAttacks Array
+  }
+
+  for(const ballAttack of ballAttacks){
+    initiateBallAttack(ballAttack);
   }
 }
 
@@ -339,9 +344,11 @@ function initiateBallAttack(ballAttack){
   ballAttack.x = random(ballAttack.width, maxX - ballAttack.width);
   ballAttack.y = random(ballAttack.height + header.height, maxY - ballAttack.height);
 
-  let direction = p5.Vector.sub(ballAttack.target, createVector(ballAttack.x, ballAttack.y).normalize()); // This apparently will find the x / y direction towards the player
+  let direction = p5.Vector.sub(ballAttack.target, createVector(ballAttack.x, ballAttack.y)).normalize(); // This apparently will find the x / y direction towards the player
   ballAttack.velocityX = direction.x;
   ballAttack.velocityY = direction.y;
+
+
 
 
 }
@@ -357,10 +364,18 @@ function drawBallAttack(){
     
     if(ballAttack.x < -200 || ballAttack.x > maxX + 200 || ballAttack.y < -200 + header.height || ballAttack.y > maxY + 200){
       initiateBallAttack(ballAttack)
+      console.log("x: ", ballAttack.velocityX, " y: ", ballAttack.velocityY);
     }
 
     ballAttack.x += ballAttack.velocityX * ballAttack.speed;
     ballAttack.y += ballAttack.velocityY * ballAttack.speed;
+
+    push();
+    fill(ballAttack.color);
+    ellipse(ballAttack.x, ballAttack.y, ballAttack.width, ballAttack.height);
+    pop();
+
+    triggerAttackCollision(ballAttack);
 
   }
 }
