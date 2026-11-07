@@ -137,7 +137,7 @@ function draw() {
   // If the game is not over, draw the lines from the line attack
   if(!isGameOver)
   {
-    // drawLineAttack();
+    drawLineAttack();
     drawBallAttack();
   }
   
@@ -341,8 +341,8 @@ function initiateBallAttack(ballAttack){
   let currentSnapShot = player.pos.copy();                          // Snapshot the player's position before spawning
 
   ballAttack.target = currentSnapShot;
-  ballAttack.x = random(ballAttack.width, maxX - ballAttack.width);
-  ballAttack.y = random(ballAttack.height + header.height, maxY - ballAttack.height);
+  ballAttack.x = random(ballAttack.width - 500, maxX - ballAttack.width + 500);
+  ballAttack.y = random(ballAttack.height + header.height - 500, maxY - ballAttack.height + 500);
 
   let direction = p5.Vector.sub(ballAttack.target, createVector(ballAttack.x, ballAttack.y)).normalize(); // This apparently will find the x / y direction towards the player
   ballAttack.velocityX = direction.x;
@@ -364,7 +364,6 @@ function drawBallAttack(){
     
     if(ballAttack.x < -200 || ballAttack.x > maxX + 200 || ballAttack.y < -200 + header.height || ballAttack.y > maxY + 200){
       initiateBallAttack(ballAttack)
-      console.log("x: ", ballAttack.velocityX, " y: ", ballAttack.velocityY);
     }
 
     ballAttack.x += ballAttack.velocityX * ballAttack.speed;
