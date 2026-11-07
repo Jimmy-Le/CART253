@@ -27,6 +27,12 @@ let isWin = false;                      // Did the player win or lose
 let lineAttacks = [];
 let attackTolerance = 50;
 
+// Attack Properties:
+let baseLineSize = 5;
+let growLineSize = 30;
+
+
+
 
 
 // UI Header
@@ -235,12 +241,13 @@ function setupAttacks(){
       x: -100,
       y: maxY/2,
       color: "#FF0000",
-      width: 5,
+      width: baseLineSize,
       height: maxY,
       attackOver: false,
       attackColor: "#FFFFFF",
       target: player.pos.copy(),
-      spawnTime: millis()
+      spawnTime: millis(),
+      mode: 0
     }
 
     lineAttacks.push(newLine);
@@ -252,12 +259,22 @@ function setupAttacks(){
 
 function drawLineAttack(){
 
+
   for(const lineAttack of lineAttacks){
     
     let timeElapsed = millis() - lineAttack.spawnTime; 
 
-    let newX = lineAttack.target.x + random(-50,50);
-    lineAttack.x = newX;
+
+
+    if(lineAttack.mode === 0){
+      lineAttack.x = lineAttack.target.x + random(-50,50);
+      lineAttack.y = maxY/2;
+    }
+    else {
+      lineAttack.x = maxX/2;
+      lineAttack.y = lineAttack.target.y + random(-50,50);
+    }
+
     if(timeElapsed < 750)
     {
       push();
@@ -268,7 +285,8 @@ function drawLineAttack(){
     else {
       push()
       lineAttack.color = lineAttack.attackColor;
-      lineAttack.width = 30;
+      lineAttack.width = lineAttack.mode === 0? growLineSize : maxX;
+      lineAttack.height = lineAttack.mode === 0? maxY: growLineSize;
       fill(lineAttack.color);
       rect(lineAttack.x, lineAttack.y, lineAttack.width, lineAttack.height);
 
@@ -285,14 +303,19 @@ function initiateLineAttack(){
   // Snapshot the player's position before spawning
   let currentSnapShot = player.pos.copy(); 
 
+  let randomMode = Math.floor(random(0,2));
+  
+
   for(const lineAttack of lineAttacks) {
     // Lock the attack to the player's static X coordinate at this exact moment
     lineAttack.target = currentSnapShot;
 
     // Reset properties to warning phase
     lineAttack.color = "#FF0000";             // Initial red color
-    lineAttack.width = 5;                      // Thin warning line
+    lineAttack.width = randomMode === 0 ? baseLineSize : maxX;
+    lineAttack.height = randomMode === 0 ? maxY: baseLineSize;                       // Thin warning line
     lineAttack.spawnTime = millis();            // Record when this attack started
+    lineAttack.mode = randomMode;         
   }
 
 }
