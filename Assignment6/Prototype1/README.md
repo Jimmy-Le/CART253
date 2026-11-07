@@ -1,14 +1,14 @@
-# Rock Stacker
+# Overtale
 
 Jimmy Le
 
-[View this project online](https://jimmy-le.github.io/CART253/Assignment5/Prototype1/index.html)
+[View this project online](https://jimmy-le.github.io/CART253/Assignment6/Prototype1/index.html)
 
 ## Description
 
-This project allows the users to stack rocks on top of each other and make them float
+This is a game where you must avoid the attacks and survive to win!
 
-![Eating Coins](./assets/images/image.png)
+![Overtale](./assets/images/image.png)
 
 ## Attribution
 

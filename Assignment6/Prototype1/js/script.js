@@ -1,8 +1,8 @@
 /**
- * Eating Coins
+ * Overtale
  * Jimmy Le
  *
- * Run around and eat coins!
+ * Survive or be destroyed!
  * 
  */
 
