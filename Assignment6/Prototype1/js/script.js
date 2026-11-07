@@ -303,22 +303,6 @@ function drawLineAttack(){
 }
 
 
-function initiateBallAttack(){
-  let currentSnapShot = player.pos.copy();                          // Snapshot the player's position before spawning
-
-  // Update the attributes of all the lines in the line attack
-  for(const ballAttack of ballAttacks) {
-    // Lock the attack to the player's static X coordinate at this exact moment
-    ballAttack.target = currentSnapShot;
-    ballAttack.x = random(ballAttack.width, maxX - ballAttack.width);
-    ballAttack.y = random(ballAttack.height + header.height, maxY - ballAttack.height);
-
-    let direction = p5.Vector.sub(ballAttack.target, createVector(ballAttack.x, ballAttack.y).normalize()); // This apparently will find the x / y direction towards the player
-    ballAttack.velocityX = direction.x;
-    ballAttack.velocityY = direction.y;
-
-  }
-}
 
 
 
@@ -341,10 +325,43 @@ function setupBalls()
       target: player.pos.copy(),
       velocityX: 0,
       velocityY: 0,
-      ballSpeed: 4
+      speed: random(2, 5)
     }
 
     ballAttacks.push(ballLine);              // Push each new ball into the ballAttacks Array
+  }
+}
+
+function initiateBallAttack(ballAttack){
+  let currentSnapShot = player.pos.copy();                          // Snapshot the player's position before spawning
+
+  ballAttack.target = currentSnapShot;
+  ballAttack.x = random(ballAttack.width, maxX - ballAttack.width);
+  ballAttack.y = random(ballAttack.height + header.height, maxY - ballAttack.height);
+
+  let direction = p5.Vector.sub(ballAttack.target, createVector(ballAttack.x, ballAttack.y).normalize()); // This apparently will find the x / y direction towards the player
+  ballAttack.velocityX = direction.x;
+  ballAttack.velocityY = direction.y;
+
+
+}
+
+/***
+ * This function draws the lines from the lineAttacks on screen
+ * After an initial line has been draw, after a certain period of time from its creation, it will activate, becoming bigger and deal damage to players on contact
+ */
+function drawBallAttack(){
+
+  // Draw each line
+  for(const ballAttack of ballAttacks){
+    
+    if(ballAttack.x < -200 || ballAttack.x > maxX + 200 || ballAttack.y < -200 + header.height || ballAttack.y > maxY + 200){
+      initiateBallAttack(ballAttack)
+    }
+
+    ballAttack.x += ballAttack.velocityX * ballAttack.speed;
+    ballAttack.y += ballAttack.velocityY * ballAttack.speed;
+
   }
 }
 
