@@ -19,6 +19,7 @@ This website is used to display the projects made in the CART 253 class
 5. [Function Challenge](./functions-challenge/index.html)
 6. [Array Challenge](./arrays-challenge/index.html)
 7. [Loops Challenge](./loops-challenge/index.html)
+8. [Data-Challenge](./data-challenge/index.html)
 
 ## Assignments
 
