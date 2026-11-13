@@ -1,6 +1,24 @@
 # Reflective Journal
 ---
-## (NEW) 6 November 2026
+## (NEW) 13 November 2026
+
+For this week, I guess I will write about what kind of ideas I am thinking about doing for my final project.
+
+### 1. Bullet Hell Game
+This would be a continuation of last weeks project with all the projectile and dodging. But instead there would be a way for you to "attack back" or make progress. For example, you have to get in a circle and stay there for a few seconds to gain points. There could also be a boss monster that you can shoot back at.
+
+
+### 2. Healing Game
+I really like healing in games, but soooo many games have such boring healing mechanisms, like target and ally and press a button. I would like to explore different options of doing this. One idea is having a NPC character run around the canvas taking damage and shooting at an enemy, and you follow them around and heal them with different methods. As the enemy reach certain HP breakpoints, they transition into different phases which makes them deal more damage, but you also unlock more skills.
+1. Mouse leftclick and drag would draw a wall, where when the NPC walks through it, gets healed.
+2. Rightclick would create a little tower that heals the NPC when it is within its radius
+3. Scroll wheel up/down will shoot a projectile from the edge of the screen towards the x position of the mouse, if it collides with the player, it will heal them
+
+
+In the end I think i will go with Option 2 since it is kind of a mix of both, but has more details .
+
+---
+## 6 November 2026
 
 For this assignment, you told me it was okay if I did 1 really good one. Hopefully this one is good enough~
 
