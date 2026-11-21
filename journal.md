@@ -1,6 +1,46 @@
 # Reflective Journal
 ---
-## (NEW) 13 November 2026
+## (NEW) 20 November 2026
+
+For this week, I planned out the visuals and stuff that I would need for the Healing Game.
+
+I drew out the UI and thought about how the different abilities would look
+![Healing](./Image/Healing.png)
+
+The boss monster would reside at the top of the screen, which the Bunny would passively shoot and chip away at its HP.
+### Attributes
+Levels: After reaching certain milestones in the boss HP bar, the Bunny levels up and gains more HP, Mana Points, and ability scale off of it
+
+HP: Health Bar, it will maybe decay on its own? We'll see if it is too easy
+
+MP: Mana Point Bar, it will be an integer and work like an ammo system
+
+
+### Skills 
+![Skills](./Image/Attributes.png)
+
+The left click would be a point and click healing, It heals very little, but there is a very low cooldown time, so it can be held down or used very often.
+
+The middle click will send a quick missile up / down from the edges of the screen towards the x position of the mouse. It will heal the Bunny on hit.
+
+The right click will consume a Mana Point to deploy a wall, which heals the Bunny whenever it walks into it. The wall lasts forever and there is a slight cooldown to deploy a new wall. The player can press R to reset all walls and retrieve back the mana points.
+
+The Space Button will consume 5 Mana Points to deploy a zone around the Bunny, which heals a small amount every second and reduces the amount of damage received by half(?). The zone will not move and only 1 may be placed at a time. The Area size will scale off of the Bunny's Level.
+
+
+## Enemy Skills
+![Enemy Skills](./Image/Boss_Attacks.png)
+![Other Attributes](./Image/Attributes_2.png)
+Lazer Beam & Balls: We will reuse the same stuff as previous prototype
+Falling Arrows: Arrows fall down from the upper border
+Poison Gas: Fields of gas spawns on the map and changes position when reaching different Boss HP milestones
+
+
+
+
+
+---
+## 13 November 2026
 
 For this week, I guess I will write about what kind of ideas I am thinking about doing for my final project.
 
