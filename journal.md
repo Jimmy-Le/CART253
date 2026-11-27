@@ -1,6 +1,12 @@
 # Reflective Journal
 ---
-## (NEW) 20 November 2026
+## (NEW) 27 November 2026
+
+I did not work on it this week :/
+
+I was going to start programming on Wednesday during the lab, but I was having an allergic reaction to some chocolate that I ate earlier. I went home and passed out until the next day, so no progess this week.
+
+## 20 November 2026
 
 For this week, I planned out the visuals and stuff that I would need for the Healing Game.
 
