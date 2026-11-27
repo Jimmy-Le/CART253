@@ -1,0 +1,24 @@
+# Overtale
+
+Jimmy Le
+
+[View this project online](https://jimmy-le.github.io/CART253/Assignment6/Prototype1/index.html)
+
+## Description
+
+This is a game where you must avoid the attacks and survive to win!
+
+![Overtale](./assets/images/image.png)
+
+## Attribution
+
+This bit should attribute any code, assets or other elements used taken from other sources. For example:
+
+> - This project uses [p5.js](https://p5js.org).
+> - This project uses the Silkscreen Font from google fonts
+
+## License
+
+This bit could include the license you want to apply to your work. For example:
+
+> This project is licensed under a Creative Commons Attribution ([CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.en)) license with the exception of libraries and other components with their own licenses.
